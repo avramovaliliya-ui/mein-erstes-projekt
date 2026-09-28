@@ -1,0 +1,944 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Prompt-Baukasten – Liliya Avramova</title><meta name="description" content="12 kostenlose Prompts für deinen ganzen Tag – einstellbar, mit deutscher Anleitung."><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Lato:wght@300;400;700&display=swap">
+<style>
+:root{
+  --creme:#F6F0E6;
+  --flaeche:#FFFFFF;
+  --flaeche-2:#EFE6D9;
+  --linie:#DCCFBC;
+  --schrift:#1C1917;
+  --schrift-leise:#6B6259;
+  --wein:#7B2C36;
+  --gold:#B08542;
+  --schatten:0 1px 2px rgba(28,25,23,.05);
+  --radius:3px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--creme);color:var(--schrift);
+  font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+.huelle{max-width:940px;margin:0 auto;padding:0 22px 90px}
+
+.kopf{padding:56px 0 34px;border-bottom:1px solid var(--linie)}
+.marke{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--wein);margin-bottom:16px}
+h1{
+  font-family:'Playfair Display',Georgia,serif;font-weight:500;
+  font-size:clamp(38px,7vw,60px);line-height:1.04;margin:0;
+  letter-spacing:.005em;text-wrap:balance;
+}
+.kopf p{max-width:56ch;margin:18px 0 0;color:var(--schrift-leise);font-size:16px}
+
+section{padding-top:56px}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--wein);margin-bottom:12px}
+h2{
+  font-family:'Playfair Display',Georgia,serif;font-weight:500;
+  font-size:clamp(26px,4vw,34px);line-height:1.15;margin:0 0 14px;text-wrap:balance;
+}
+.lauf{max-width:62ch;color:var(--schrift-leise);font-size:15.5px;margin:0 0 8px}
+.lauf strong{color:var(--schrift);font-weight:700}
+
+/* Referenzfoto */
+.zwei{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:26px}
+.liste{background:var(--flaeche);border:1px solid var(--linie);border-radius:var(--radius);padding:20px 22px}
+.liste h3{
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  margin:0 0 14px;font-weight:700;
+}
+.liste.ja h3{color:var(--gold)}
+.liste.nein h3{color:var(--wein)}
+.liste ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.liste li{font-size:14.5px;padding-left:20px;position:relative;line-height:1.5}
+.liste li::before{position:absolute;left:0;top:0;font-weight:700}
+.liste.ja li::before{content:"+";color:var(--gold)}
+.liste.nein li::before{content:"\2212";color:var(--wein)}
+
+.hinweis{
+  border-left:2px solid var(--gold);background:var(--flaeche-2);
+  padding:16px 20px;margin-top:22px;font-size:14.5px;max-width:64ch;
+}
+.hinweis b{font-weight:700}
+
+/* Baukasten */
+.werkbank{
+  background:var(--flaeche);border:1px solid var(--linie);
+  border-radius:var(--radius);padding:26px;margin-top:26px;box-shadow:var(--schatten);
+}
+.schalter{display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.reihe{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rlabel{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--schrift-leise);font-weight:700;min-width:64px}
+.modus{display:flex;flex-wrap:wrap;gap:8px}
+.modus button{
+  font-family:inherit;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  padding:9px 15px;border:1px solid var(--linie);background:transparent;
+  color:var(--schrift-leise);cursor:pointer;border-radius:var(--radius);
+  transition:background .15s,color .15s,border-color .15s;
+}
+.modus button[aria-pressed="true"]{background:var(--schrift);color:var(--creme);border-color:var(--schrift)}
+.modus button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.felder{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:14px}
+.feld{display:flex;flex-direction:column;gap:6px}
+.feld label{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--schrift-leise);font-weight:700}
+select{
+  font-family:inherit;font-size:14.5px;font-weight:400;padding:9px 10px;
+  border:1px solid var(--linie);border-radius:var(--radius);
+  background:var(--creme);color:var(--schrift);width:100%;cursor:pointer;
+}
+select:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.felder[hidden]{display:none}
+.feld[hidden]{display:none}
+
+.ergebnis{margin-top:24px;border-top:1px solid var(--linie);padding-top:22px}
+.ergebnis .kappe{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--schrift-leise);
+  font-weight:700;margin-bottom:10px;
+}
+.code{
+  background:var(--flaeche-2);border:1px solid var(--linie);border-radius:var(--radius);
+  padding:15px 17px;font-size:13.5px;line-height:1.62;font-weight:400;
+  white-space:pre-wrap;word-break:break-word;color:var(--schrift);
+}
+
+.kopieren{
+  font-family:inherit;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  padding:8px 14px;border:1px solid var(--schrift);background:var(--schrift);color:var(--creme);
+  border-radius:var(--radius);cursor:pointer;flex-shrink:0;transition:opacity .15s;
+}
+.kopieren:hover{opacity:.82}
+.kopieren:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.kopieren.fertig{background:var(--gold);border-color:var(--gold)}
+
+/* Prompts */
+.karten{display:flex;flex-direction:column;gap:16px;margin-top:26px}
+.karte{background:var(--flaeche);border:1px solid var(--linie);border-radius:var(--radius);overflow:hidden}
+.karte>.zeile{
+  display:flex;align-items:center;gap:14px;padding:16px 20px;
+  border-bottom:1px solid var(--linie);flex-wrap:wrap;
+}
+.nr{
+  font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:500;
+  color:var(--gold);min-width:34px;font-variant-numeric:tabular-nums;
+}
+.titel{flex:1;min-width:140px}
+.titel .h{font-size:16px;font-weight:700;line-height:1.25}
+.titel .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--schrift-leise);margin-top:3px}
+.karte .code{border:0;border-radius:0;background:var(--flaeche-2);border-top:0}
+.karte .fuss{display:flex;gap:8px;padding:14px 20px;flex-wrap:wrap;align-items:center}
+.mini{
+  font-family:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  padding:8px 13px;border:1px solid var(--linie);background:transparent;color:var(--schrift-leise);
+  border-radius:var(--radius);cursor:pointer;
+}
+.mini:hover{color:var(--schrift);border-color:var(--schrift-leise)}
+.mini:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.deutsch{padding:0 20px 20px}
+.deutsch[hidden]{display:none}
+.deutsch table{width:100%;border-collapse:collapse;font-size:14px}
+.deutsch th{
+  text-align:left;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--schrift-leise);font-weight:700;padding:0 10px 8px 0;width:104px;vertical-align:top;
+}
+.deutsch td{padding:0 0 8px 0;vertical-align:top;line-height:1.5}
+.deutsch tr:last-child th,.deutsch tr:last-child td{padding-bottom:0}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--linie);font-size:13px;color:var(--schrift-leise)}
+footer p{margin:0 0 8px;max-width:62ch}
+
+
+/* Galerie */
+.galerie{display:flex;gap:12px;overflow-x:auto;padding:4px 0 10px;margin-top:22px;scroll-snap-type:x mandatory}
+.galerie figure{margin:0;flex:0 0 auto;width:156px;scroll-snap-align:start}
+.galerie img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:var(--radius);display:block;border:1px solid var(--linie)}
+.galerie figcaption{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--schrift-leise);margin-top:8px;font-weight:700}
+.gnote{font-size:13px;color:var(--schrift-leise);margin-top:6px}
+
+/* Bild in der Karte */
+.karte>.zeile{align-items:flex-start}
+.vorschau{flex:0 0 auto;width:74px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--linie)}
+.vorschau img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+
+/* Abschluss */
+.abschluss{
+  background:var(--flaeche);border:1px solid var(--linie);border-left:3px solid var(--gold);
+  border-radius:var(--radius);padding:30px 32px;margin-top:34px;
+}
+.abschluss h2{margin-top:0}
+.abschluss .lauf{margin-bottom:14px}
+.knopf{
+  display:inline-block;margin-top:10px;font-family:inherit;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  padding:13px 24px;background:var(--schrift);color:var(--creme);
+  border-radius:var(--radius);text-decoration:none;
+}
+.knopf:hover{opacity:.86}
+.kennz{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--schrift-leise);margin-top:18px}
+
+/* Anleitung */
+.schritte{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:schritt}
+.schritte li{
+  counter-increment:schritt;position:relative;background:var(--flaeche);
+  border:1px solid var(--linie);border-radius:var(--radius);
+  padding:16px 20px 16px 62px;font-size:15px;line-height:1.55;
+}
+.schritte li::before{
+  content:counter(schritt);position:absolute;left:20px;top:13px;
+  font-family:'Playfair Display',Georgia,serif;font-size:24px;color:var(--gold);
+}
+.schritte b{font-weight:700}
+.schritte .klein{display:block;color:var(--schrift-leise);font-size:14px;margin-top:4px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="huelle">
+
+<header class="kopf">
+  <div class="marke">Liliya Avramova</div>
+  <h1>Prompt&#8209;Baukasten</h1>
+  <p>Stell oben einmal ein, wie du aussiehst. Alle zwölf Prompts darunter schreiben sich mit — du kopierst nur noch. Kein Englisch nötig, daneben steht auf Deutsch, was drinsteht.</p>
+</header>
+
+<section>
+  <div class="eyebrow">Zum ersten Mal hier?</div>
+  <h2>So geht&rsquo;s &mdash; auch wenn du noch nie ein KI-Bild gemacht hast</h2>
+  <ol class="schritte">
+    <li><b>Such ein Foto von dir aus.</b><span class="klein">Ein Handy-Foto reicht. Tageslicht, dein Gesicht gross und scharf. Weiter unten steht genau, worauf du achten musst.</span></li>
+    <li><b>&Ouml;ffne ChatGPT oder Higgsfield.</b><span class="klein">Zum Ausprobieren reicht die kostenlose ChatGPT-Version &mdash; dort gehen aber nur wenige Bilder pro Tag.</span></li>
+    <li><b>Stell unten ein, wie du aussiehst.</b><span class="klein">Haare, Alter, Statur, Brille, Schmuck &mdash; und dein Werkzeug (ChatGPT oder Higgsfield). Einmal reicht.</span></li>
+    <li><b>Tipp bei einem Prompt auf &bdquo;Kopieren&ldquo;.</b><span class="klein">Du musst nichts auf Englisch verstehen. Unter &bdquo;Auf Deutsch&ldquo; steht, was drin steht.</span></li>
+    <li><b>Lade dein Foto hoch, f&uuml;ge den Prompt ein, schick ab.</b><span class="klein">In ChatGPT: unten auf <b>+</b> tippen &rarr; dein Foto w&auml;hlen &rarr; ins Textfeld tippen, gedr&uuml;ckt halten, &bdquo;Einf&uuml;gen&ldquo; &rarr; Pfeil.</span></li>
+    <li><b>Speicher dein Bild und schreib &bdquo;KI-generiert&ldquo; drauf.</b><span class="klein">Klein in eine Ecke. Das geh&ouml;rt dazu, weil es ehrlich ist.</span></li>
+  </ol>
+</section>
+
+<section>
+  <div class="eyebrow">Mein Avatar</div>
+  <h2>Damit arbeite ich</h2>
+  <p class="lauf">Das ist mein Avatar &mdash; entstanden aus einem einzigen Referenzfoto. Keine Kamera, kein Fotograf, kein Studio. Dieselbe Frau in jeder Situation, immer wiedererkennbar.</p>
+  <p class="lauf">Bild 01, 02 und 03 sind genau mit Prompt 01, 02 und 03 von dieser Seite entstanden. Die anderen Bilder unten sind mit fr&uuml;heren Prompts gemacht. Sie zeigen dir, was mit einem guten Referenzfoto m&ouml;glich ist.</p>
+  <div class="galerie">
+    <figure><img src="bilder/p01.jpg" alt="Beispiel 01 — Aufwachen" loading="lazy"><figcaption>01 · Aufwachen</figcaption></figure>
+    <figure><img src="bilder/p02.jpg" alt="Beispiel 02 — Kaffee" loading="lazy"><figcaption>02 · Kaffee</figcaption></figure>
+    <figure><img src="bilder/p03.jpg" alt="Beispiel 03 — Fertig machen" loading="lazy"><figcaption>03 · Fertig machen</figcaption></figure>
+    <figure><img src="bilder/p04.jpg" alt="Beispiel 04 — Im Auto" loading="lazy"><figcaption>04 · Im Auto</figcaption></figure>
+    <figure><img src="bilder/p05.jpg" alt="Beispiel 05 — Schreibtisch" loading="lazy"><figcaption>05 · Schreibtisch</figcaption></figure>
+    <figure><img src="bilder/p07.jpg" alt="Beispiel 07 — Mittagessen" loading="lazy"><figcaption>07 · Mittagessen</figcaption></figure>
+    <figure><img src="bilder/p08.jpg" alt="Beispiel 08 — Spaziergang" loading="lazy"><figcaption>08 · Spaziergang</figcaption></figure>
+    <figure><img src="bilder/p10.jpg" alt="Beispiel 10 — Goldene Stunde" loading="lazy"><figcaption>10 · Goldene Stunde</figcaption></figure>
+    <figure><img src="bilder/p11.jpg" alt="Beispiel 11 — Abends" loading="lazy"><figcaption>11 · Abends</figcaption></figure>
+  </div>
+  <p class="gnote">Alle Bilder KI-generiert.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Zuerst</div>
+  <h2>Dein Referenzfoto</h2>
+  <p class="lauf">Ohne Foto funktioniert kein Prompt. <strong>Dein Gesicht steht nicht im Text</strong> — es kann gar nicht drinstehen. Kein Satz beschreibt ein Gesicht so genau, dass am Ende du herauskommst.</p>
+  <p class="lauf">Das Foto liefert das Gesicht. Der Text liefert alles andere: Haarlänge, Haarfarbe, Hautton, Brille, Schmuck. Ohne diese Angaben driftet die KI ab — sie macht dunkle Haare bräunlich und nimmt die Brille weg.</p>
+
+  <div class="zwei">
+    <div class="liste ja">
+      <h3>So soll es sein</h3>
+      <ul>
+        <li>Gesicht scharf und gross im Bild</li>
+        <li>Von vorn oder leicht schräg</li>
+        <li>Gleichmässiges Licht, weiche Schatten</li>
+        <li>Nur du drauf</li>
+        <li>Ein echtes Foto von dir</li>
+      </ul>
+    </div>
+    <div class="liste nein">
+      <h3>So nicht</h3>
+      <ul>
+        <li>Sonnenbrille, Hand vorm Gesicht</li>
+        <li>Starker Schatten quer übers Gesicht</li>
+        <li>Du klein irgendwo in der Landschaft</li>
+        <li>Zweite Person mit im Bild</li>
+        <li>Ein KI-Bild als Vorlage</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="hinweis">
+    <b>Warum kein KI-Bild als Vorlage:</b> Die KI baut dann auf einer Kopie auf. Nach drei Runden wanderst du langsam weg von dir selbst. Nimm ein echtes Foto — oder wenn schon ein KI-Bild, dann immer dasselbe.
+  </div>
+
+  <div class="hinweis">
+    <b>Tattoo, Narbe, Muttermal?</b> Beschreib es nicht, zeig es. Wörter geben dir <em>irgendein</em> Tattoo. Häng in Higgsfield ein zweites Referenzbild an — der Arm gross und scharf — und schreib dazu, welches Bild wofür ist. Der Umschalter unten setzt dir die zwei Zeilen automatisch ein.
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Einmal einstellen</div>
+  <h2>Deine Bausteine</h2>
+  <p class="lauf">Einmal einstellen. Danach steckt es in jedem Prompt hier auf der Seite. Länge und Farbe sind getrennt, damit auch kurze rote oder lange graue Haare vorkommen. Wer ein Kopftuch trägt, wählt es oben — dann fallen die Haar-Menüs weg. Und die Statur ist ein eigenes Menü, weil KI sonst jede Frau schlank macht.</p>
+
+  <div class="werkbank">
+    <div class="schalter">
+      <div class="reihe">
+        <span class="rlabel">Für</span>
+        <div class="modus" role="group" aria-label="Für wen">
+          <button type="button" data-wer="0" aria-pressed="true">Frau</button>
+          <button type="button" data-wer="1" aria-pressed="false">Mann</button>
+        </div>
+      </div>
+      <div class="reihe">
+        <span class="rlabel">Werkzeug</span>
+        <div class="modus" role="group" aria-label="Werkzeug">
+          <button type="button" data-werk="hf" aria-pressed="true">Higgsfield</button>
+          <button type="button" data-werk="gpt" aria-pressed="false">ChatGPT</button>
+        </div>
+      </div>
+      <div class="reihe">
+        <span class="rlabel">Zeile</span>
+        <div class="modus" role="group" aria-label="Art der Identitätszeile">
+          <button type="button" data-modus="lang" aria-pressed="true">Ausführlich</button>
+          <button type="button" data-modus="kurz" aria-pressed="false">Nur Referenzfoto</button>
+          <button type="button" id="btn-tattoo" aria-pressed="false">Mit Tattoo-Bild</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="felder" id="felder">
+      <div class="feld" id="w-wer" hidden>
+        <label for="f-wer">Für</label>
+        <select id="f-wer"></select>
+      </div>
+      <div class="feld">
+        <label for="f-format">Format</label>
+        <select id="f-format"></select>
+      </div>
+      <div class="feld">
+        <label for="f-alter">Alter</label>
+        <select id="f-alter"></select>
+      </div>
+      <div class="feld">
+        <label for="f-statur">Statur</label>
+        <select id="f-statur"></select>
+      </div>
+      <div class="feld" id="w-laenge">
+        <label for="f-laenge">Haare — Länge</label>
+        <select id="f-laenge"></select>
+      </div>
+      <div class="feld" id="w-farbe">
+        <label for="f-farbe">Haare — Farbe</label>
+        <select id="f-farbe"></select>
+      </div>
+      <div class="feld" id="w-bart">
+        <label for="f-bart">Bart</label>
+        <select id="f-bart"></select>
+      </div>
+      <div class="feld" id="w-kopftuch">
+        <label for="f-kopftuch">Kopfbedeckung</label>
+        <select id="f-kopftuch"></select>
+      </div>
+      <div class="feld">
+        <label for="f-haut">Hautton</label>
+        <select id="f-haut"></select>
+      </div>
+      <div class="feld">
+        <label for="f-brille">Brille</label>
+        <select id="f-brille"></select>
+      </div>
+      <div class="feld">
+        <label for="f-schmuck">Schmuck</label>
+        <select id="f-schmuck"></select>
+      </div>
+    </div>
+
+    <div class="ergebnis">
+      <div class="kappe">
+        <span>Deine Zeile</span>
+        <button class="kopieren" type="button" id="kop-basis">Kopieren</button>
+      </div>
+      <div class="code" id="basis-out"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Ein Tag, vom Aufstehen bis zum Sofa</div>
+  <h2>Die zwölf Prompts</h2>
+  <p class="lauf">Jeder Prompt ist komplett — Kopieren, Referenzfoto anhängen, fertig. Nichts ausfüllen.</p>
+  <div class="karten" id="karten"></div>
+  <div class="hinweis">
+    <b>Hast du ein Bild gemacht?</b> Schick es mir per DM auf Instagram mit dem Wort <b>BILD</b> &mdash; ich will es sehen! &#129293;<br>
+    <a href="https://instagram.com/liliyaavramova.ki" target="_blank" rel="noopener">@liliyaavramova.ki</a>
+  </div>
+</section>
+
+<section>
+  <div class="abschluss">
+    <div class="eyebrow">Und wenn du eine Situation brauchst, die hier fehlt?</div>
+    <h2>Dann wird&rsquo;s schwieriger.</h2>
+    <p class="lauf">Mit diesen zw&ouml;lf Prompts hast du einen ganzen Tag. Das reicht f&uuml;r deine ersten Wochen.</p>
+    <p class="lauf">Aber irgendwann willst du eine Situation, die hier nicht dabei ist. Du wei&szlig;t genau, welche &mdash; und dann m&uuml;sstest du der KI noch erkl&auml;ren, wie du stehst, aus welcher Perspektive, welches Licht, welche Umgebung. Und pl&ouml;tzlich schreibst du einen halben Roman als Prompt.</p>
+    <p class="lauf">Genau daf&uuml;r nutze ich <strong>THE REAL LIFE</strong>. Ich gebe vor, welche Situation ich m&ouml;chte &mdash; oder welche Referenz ich nachbauen will &mdash; und bekomme daraus einen fertigen, detaillierten Prompt.</p>
+    <a class="knopf" href="https://www.kristinaplatz.de/p/DsdQvf?aref=102908" target="_blank" rel="noopener sponsored">THE REAL LIFE ansehen</a>
+    <div class="kennz">Werbung &middot; Affiliate-Link</div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Von Liliya Avramova.</strong> Ich arbeite Vollzeit im Schichtdienst und baue das hier nebenher auf &mdash; &ouml;ffentlich, Schritt f&uuml;r Schritt.</p>
+  <p>Wenn dir etwas fehlt oder du irgendwo h&auml;ngst: schreib mir. Ich antworte selbst.</p>
+  <p style="margin-top:14px">
+    <strong>Instagram:</strong> <a href="https://instagram.com/liliyaavramova.ki">@liliyaavramova.ki</a><br>
+    <strong>Mail:</strong> <a href="mailto:hallo@liliyaavramova.com">hallo@liliyaavramova.com</a>
+  </p>
+  <p style="margin-top:14px">Alle Bilder, die mit diesen Prompts entstehen, sind KI-generiert und geh&ouml;ren so gekennzeichnet. Das geh&ouml;rt dazu &mdash; nicht als Pflicht&uuml;bung, sondern weil es ehrlich ist.</p>
+</footer>
+
+</div>
+
+<script>
+const OPT = {
+  wer: [["Frau","w"],["Mann","m"]],
+  format: [
+    ["Feed 4:5","4:5 vertical"],
+    ["Story 9:16","9:16 vertical"],
+    ["Quadrat 1:1","1:1 square"]
+  ],
+  statur_m: [
+    ["Schlank","a slim build"],
+    ["Sportlich","an athletic build with visible muscle tone"],
+    ["Normal","an average build"],
+    ["Kräftig","a strong, solid build with broad shoulders"],
+    ["Kräftig mit Bauch","a solid build with a fuller stomach"],
+    ["Plus Size","a plus-size build, proportions kept as in the reference photo"]
+  ],
+  laenge_m: [
+    ["Sehr kurz","very short cropped hair"],
+    ["Kurz, klassisch","short classic-cut hair, neatly styled"],
+    ["Undercut","an undercut with longer hair on top"],
+    ["Mittellang","medium-length hair, slightly tousled"],
+    ["Schulterlang","shoulder-length hair"],
+    ["Kurze Locken","short curly hair"],
+    ["Glatze, rasiert","a cleanly shaved head"],
+    ["Kahl, keine Haare","a naturally bald head, no hair"],
+    ["Lichtes Haar, Geheimratsecken","thinning hair with a receding hairline"],
+    ["Kahl mit Seitenkranz","bald on top with short hair at the sides"]
+  ],
+  bart: [
+    ["Kein Bart","clean-shaven"],
+    ["Drei-Tage-Bart","light stubble, a three-day beard"],
+    ["Kurzer Vollbart","a short, well-groomed full beard"],
+    ["Vollbart","a full beard"],
+    ["Schnurrbart","a neat moustache"]
+  ],
+  schmuck_m: [
+    ["Kein Schmuck",""],
+    ["Uhr","a simple steel watch"],
+    ["Uhr und Ring","a steel watch and a plain ring"],
+    ["Feine Kette","a fine chain worn under the shirt"],
+    ["Lederarmband, Uhr","a leather bracelet and a watch"]
+  ],
+  alter: [
+    ["Ende 20","late twenties, around 28"],
+    ["Anfang 30","early thirties, around 32"],
+    ["Ende 30","late thirties, around 38"],
+    ["Mitte 40","mid forties, around 45"],
+    ["Anfang 50","early fifties, around 52"]
+  ],
+  statur: [
+    ["Schlank","a slim build"],
+    ["Sportlich","an athletic build with visible muscle tone"],
+    ["Normal","an average build"],
+    ["Kurvig","a curvy hourglass figure with full hips"],
+    ["Kräftig","a strong, solid build with broader shoulders and hips"],
+    ["Plus Size","a plus-size figure, soft and full, proportions kept as in the reference photo"]
+  ],
+  laenge: [
+    ["Sehr lang, glatt","very long straight hair"],
+    ["Lang, gewellt","long wavy hair"],
+    ["Schulterlang","shoulder-length hair"],
+    ["Bob, kinnlang","a chin-length bob with a sharp cut"],
+    ["Kurz, Pixie","short pixie-cut hair"],
+    ["Lange Locken","long curly hair with defined curls"],
+    ["Afro, Coils","natural afro-textured hair in tight coils"],
+    ["Hochgesteckt","hair pulled back into a low bun"],
+    ["Lang, mit Pony","long hair with a full fringe"],
+    ["Mittellang, glatt","mid-length straight hair"],
+    ["Schulterlang, gewellt","shoulder-length wavy hair"],
+    ["Kurz, mit Pony","short hair with a fringe"],
+    ["Pferdeschwanz","hair tied back in a high ponytail"],
+    ["Braids","long box braids"],
+    ["Sehr lang, gewellt","very long wavy hair"],
+    ["Lang, Stufenschnitt","long layered hair"]
+  ],
+  farbe: [
+    ["Tiefschwarz","jet black (pure raven black, NOT brown)"],
+    ["Dunkelbraun","dark brown with warm natural highlights"],
+    ["Hellbraun","light brown"],
+    ["Blond","natural blonde"],
+    ["Rot, Kupfer","natural copper red"],
+    ["Silbergrau","silver-grey"],
+    ["Hell gefärbt","bleached platinum blonde"],
+    ["Kastanienbraun","chestnut brown"],
+    ["Dunkelblond","dark blonde"],
+    ["Aschblond","ash blonde"],
+    ["Karamell, Balayage","brown with soft caramel balayage"],
+    ["Schwarz mit grauen Strähnen","black with natural grey strands"],
+    ["Grau, weiss","natural grey-white"],
+    ["Mahagoni, rötlich","dark mahogany with a reddish tone"]
+  ],
+  kopftuch: [
+    ["Keine",""],
+    ["Kopftuch","wearing a neatly wrapped headscarf that fully covers the hair, in a tone matching the outfit"]
+  ],
+  haut: [
+    ["Warm, oliv","warm olive skin"],
+    ["Hell","fair skin with a light natural blush"],
+    ["Mittel, beige","medium beige skin"],
+    ["Warm braun","warm brown skin"],
+    ["Dunkelbraun","deep brown skin"]
+  ],
+  brille: [
+    ["Feine silberne Cat-Eye-Brille","fine silver cat-eye glasses"],
+    ["Feine goldene Brille","fine gold-rimmed glasses"],
+    ["Schwarze eckige Brille","black rectangular glasses"],
+    ["Keine Brille",""]
+  ],
+  schmuck: [
+    ["Gold: Creolen, Medaillon, Ringe","gold creoles, fine gold medallion necklace, stacked thin gold rings"],
+    ["Gold, dezent","small gold studs and one fine gold chain"],
+    ["Silber","silver hoops and a fine silver chain"],
+    ["Kein Schmuck",""]
+  ]
+};
+
+const CAM = "CAMERA: iPhone-style photography, ISO 200-400 with slight natural grain, aperture f/2.0 for soft background blur, shutter 1/250s, raw and unfiltered, not overly sharp";
+const ID_DE = "Gleiche Gesichtszüge, gleiche natürliche Unregelmässigkeiten, gleiche Kopfform, gleiches Alter, gleiche Proportionen, gleiche Hautstruktur. Nicht retuschieren, nicht glätten, nicht verjüngen, nicht verschönern.";
+const CAM_DE = "Wie mit dem iPhone fotografiert: ISO 200-400 mit leichtem Korn, Blende f/2.0 für weichen Hintergrund, 1/250 Sekunde, roh und ungefiltert, bewusst nicht überscharf.";
+const NEG = "NEGATIVE: plastic skin, airbrushed, over-smoothed, cartoon, 3d render, extra fingers, distorted glasses, paper cup, takeaway cup, text, watermark, slimmed-down body, altered body shape, changed proportions, rejuvenated, younger face, beautified, retouched";
+const NEG_TAT = NEG + ", invented tattoo, different tattoo, missing tattoo";
+
+const KOPF_EIN = "Keep the person exactly as in the reference photo: same facial features, same natural asymmetry, same head shape, same age, same body proportions, same skin texture. Do not retouch, do not smooth, do not rejuvenate, do not beautify, no face swap, no morphing.";
+const KOPF_TAT = "Reference 1: Keep the person exactly as in the reference photo: same facial features, same natural asymmetry, same head shape, same age, same body proportions, same skin texture. Do not retouch, do not smooth, do not rejuvenate, do not beautify, no face swap, no morphing.\nReference 2: the tattoo on the left arm — reproduce it exactly, same motif, same placement.";
+const GPT_KOPF = "Use the uploaded photo as the reference. Keep the person exactly as in the reference photo: same facial features, same natural asymmetry, same head shape, same age, same body proportions, same skin texture. Do not retouch, do not smooth, do not rejuvenate, do not beautify, no face swap, no morphing.";
+const GPT_KOPF_TAT = GPT_KOPF + " The second uploaded photo shows the tattoo on her left arm \u2014 reproduce it exactly, same motif, same placement.";
+const GPT_KURZ_W = "The subject is the woman in the uploaded photo — same face, same hair, same skin, same glasses, same jewellery, same body.";
+const GPT_KURZ_M = "The subject is the man in the uploaded photo — same face, same hair, same beard, same skin, same glasses, same body.";
+const GPT_ECHT = "Make it a real photograph: visible skin texture and fine pores, natural hands with five fingers, the glasses in their true shape, real ceramic and glass props rather than disposable ones, and no text or watermark anywhere in the image.";
+const KURZ_W = "a woman, exactly as in the reference photo — same face, same hair, same skin, same glasses, same jewellery, same body";
+const KURZ_M = "a man, exactly as in the reference photo — same face, same hair, same beard, same skin, same glasses, same body";
+
+const BILD = {"01":"bilder/p01.jpg","02":"bilder/p02.jpg","03":"bilder/p03.jpg","04":"bilder/p04.jpg","05":"bilder/p05.jpg","07":"bilder/p07.jpg","08":"bilder/p08.jpg","10":"bilder/p10.jpg","11":"bilder/p11.jpg"};
+
+const P = [
+  {nr:"01",t:"Morgens",h:"Aufwachen",
+   shotM:"a medium close-up from above, 35mm", dshotM:"Nah, leicht von oben",
+   outfitM:"a plain grey t-shirt", doutfitM:"Schlichtes graues T-Shirt",
+   poseM:"lying in bed, just woken up, one arm behind his head, calm", dposeM:"Im Bett liegen, gerade wach, ein Arm hinterm Kopf, ruhig",
+   sceneM:"a bright bedroom, white linen bedding, morning light", dsceneM:"Helles Schlafzimmer, weisse Leinenbettwäsche, Morgenlicht",
+   shot:"medium close-up from above, 35mm", dshot:"Nah, leicht von oben. 35mm zeigt etwas mehr Raum.",
+   outfit:"a cream ribbed cami top", doutfit:"Cremefarbenes Rippen-Top",
+   pose:"lying in bed, just woken up, eyes half open, soft smile", dpose:"Im Bett liegen, gerade wach, Augen halb offen, weiches Lächeln",
+   scene:"bright bedroom, white linen bedding, morning light", dscene:"Helles Schlafzimmer, weiße Leinenbettwäsche, Morgenlicht",
+   light:"soft early daylight through a window, low contrast", dlight:"Weiches frühes Tageslicht durchs Fenster, wenig Kontrast",
+   style:"candid lifestyle photography, natural skin texture, ultra-photorealistic, real photograph, not a render", dstyle:"Ungestellte Lifestyle-Fotografie, echte Hauttextur, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"02",t:"Morgens",h:"Kaffee in der Küche",
+   shotM:"a medium shot, 50mm", dshotM:"Halbnah",
+   outfitM:"a fitted charcoal crewneck t-shirt", doutfitM:"Eng anliegendes anthrazitfarbenes Rundhals-Shirt",
+   poseM:"standing at the kitchen counter, holding a ceramic mug, looking down into it", dposeM:"An der Küchenzeile stehen, Keramiktasse halten, hineinschauen",
+   sceneM:"a bright kitchen, warm wood, a plant, soft blurred background", dsceneM:"Helle Küche, warmes Holz, eine Pflanze, Hintergrund weich unscharf",
+   shot:"medium shot, 50mm", dshot:"Halbnah, etwa ab der Hüfte. 50mm sieht wie das Auge.",
+   outfit:"open cream knit cardigan over a fitted top", doutfit:"Offener cremefarbener Strickcardigan über engem Oberteil",
+   pose:"standing at the counter, holding an elegant ceramic mug with both hands", dpose:"An der Küchenzeile stehen, Keramiktasse mit beiden Händen halten",
+   scene:"bright kitchen, warm wood, a plant, soft blurred background", dscene:"Helle Küche, warmes Holz, eine Pflanze, Hintergrund weich unscharf",
+   light:"warm morning light from the side", dlight:"Warmes Morgenlicht von der Seite",
+   style:"quiet lifestyle photography, ultra-photorealistic, real photograph, not a render", dstyle:"Ruhige Lifestyle-Fotografie, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"03",t:"Morgens",h:"Fertig machen",
+   shotM:"a medium shot from a slight side angle, 50mm", dshotM:"Halbnah, leicht von der Seite",
+   outfitM:"a crisp white shirt with the collar open", doutfitM:"Frisches weisses Hemd, Kragen offen",
+   poseM:"standing in front of a mirror, adjusting his watch, looking at his reflection", dposeM:"Vorm Spiegel stehen, die Uhr richten, sich anschauen",
+   sceneM:"a bright hallway, plain wall, soft shadows", dsceneM:"Heller Flur, schlichte Wand, weiche Schatten",
+   shot:"medium shot, slight side angle, 50mm", dshot:"Halbnah, leicht von der Seite",
+   outfit:"satin blouse in dusty rose", doutfit:"Satinbluse in Altrosa",
+   pose:"standing in front of a mirror, adjusting an earring, looking at her reflection", dpose:"Vorm Spiegel stehen, einen Ohrring richten, sich anschauen",
+   scene:"bright bedroom or hallway, plain wall, soft shadows", dscene:"Helles Schlafzimmer oder Flur, schlichte Wand, weiche Schatten",
+   light:"diffused daylight, gentle", dlight:"Diffuses Tageslicht, sanft",
+   style:"editorial lifestyle photography, ultra-photorealistic, real photograph, not a render", dstyle:"Editorial-Lifestyle-Fotografie, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"04",t:"Vormittag",h:"Im Auto",
+   shotM:"a close-up from the passenger seat, 50mm", dshotM:"Nahaufnahme vom Beifahrersitz",
+   outfitM:"a dark navy crewneck t-shirt, sunglasses pushed up on his head", doutfitM:"Dunkelblaues Rundhals-Shirt, Sonnenbrille auf dem Kopf",
+   poseM:"sitting in the driver's seat, one hand on the wheel, looking ahead", dposeM:"Am Steuer sitzen, eine Hand am Lenkrad, nach vorn schauen",
+   sceneM:"a modern car interior, blurred street outside", dsceneM:"Modernes Autoinneres, draussen die Strasse unscharf",
+   shot:"close-up from the passenger seat, 50mm", dshot:"Nahaufnahme vom Beifahrersitz aus",
+   outfit:"fitted black long-sleeve top", doutfit:"Eng anliegendes schwarzes Langarm-Oberteil",
+   pose:"sitting in the driver's seat, one hand on the wheel, looking ahead", dpose:"Am Steuer sitzen, eine Hand am Lenkrad, nach vorn schauen",
+   scene:"modern car interior, blurred street outside", dscene:"Modernes Autoinneres, draußen die Straße unscharf",
+   light:"natural daylight through the windshield, catchlight in the eyes", dlight:"Tageslicht durch die Frontscheibe, Lichtpunkt in den Augen",
+   style:"candid lifestyle photography, ultra-photorealistic, real photograph, not a render", dstyle:"Ungestellte Lifestyle-Fotografie, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"05",t:"Vormittag",h:"Am Schreibtisch",
+   shotM:"a medium wide shot, slightly above eye level, 35mm", dshotM:"Halbtotale, leicht über Augenhöhe",
+   outfitM:"a light linen shirt, sleeves rolled, a watch with a brown leather strap", doutfitM:"Helles Leinenhemd, Ärmel hochgekrempelt, Uhr mit braunem Lederband",
+   poseM:"sitting at a desk, one hand on an open laptop, focused", dposeM:"Am Schreibtisch sitzen, eine Hand am offenen Laptop, konzentriert",
+   sceneM:"a bright tidy office, cream walls, one plant, a notebook", dsceneM:"Helles aufgeräumtes Büro, cremefarbene Wände, eine Pflanze, ein Notizbuch",
+   shot:"medium wide, slightly above eye level, 35mm", dshot:"Halbtotale, leicht über Augenhöhe",
+   outfit:"cream linen shirt, sleeves rolled", doutfit:"Cremefarbenes Leinenhemd, Ärmel hochgekrempelt",
+   pose:"sitting at a desk, one hand on an open laptop, focused", dpose:"Am Schreibtisch sitzen, eine Hand am offenen Laptop, konzentriert",
+   scene:"bright tidy home office, cream walls, one plant, a notebook", dscene:"Helles aufgeräumtes Arbeitszimmer, cremefarbene Wände, eine Pflanze, ein Notizbuch",
+   light:"even daylight from the side, no harsh shadows", dlight:"Gleichmäßiges Tageslicht von der Seite, keine harten Schatten",
+   style:"clean editorial lifestyle photography, ultra-photorealistic, real photograph, not a render", dstyle:"Klare Editorial-Lifestyle-Fotografie, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"06",t:"Vormittag",h:"Kurze Pause",
+   shotM:"a medium shot from behind and slightly to the side, 50mm", dshotM:"Halbnah, von hinten und leicht seitlich",
+   outfitM:"a light linen shirt, sleeves rolled", doutfitM:"Wie bei 05 — helles Leinenhemd",
+   poseM:"standing at a window, holding a ceramic mug, looking outside", dposeM:"Am Fenster stehen, Keramiktasse halten, nach draussen schauen",
+   sceneM:"a bright room, sheer curtain, blurred view", dsceneM:"Heller Raum, dünner Vorhang, unscharfer Ausblick",
+   shot:"medium shot from behind and slightly to the side, 50mm", dshot:"Halbnah, von hinten und leicht seitlich",
+   outfit:"cream linen shirt, sleeves rolled", doutfit:"Wie bei 05 — cremefarbenes Leinenhemd",
+   pose:"standing at a window, holding a ceramic mug, looking outside", dpose:"Am Fenster stehen, Keramiktasse halten, nach draußen schauen",
+   scene:"bright room, sheer curtain, blurred view", dscene:"Heller Raum, dünner Vorhang, unscharfer Ausblick",
+   light:"backlight from the window, soft rim on hair and shoulder", dlight:"Gegenlicht vom Fenster, weicher Lichtsaum auf Haar und Schulter",
+   style:"quiet lifestyle photography, ultra-photorealistic, real photograph, not a render", dstyle:"Ruhige Lifestyle-Fotografie, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"07",t:"Mittag",h:"Mittagessen",
+   shotM:"a candid medium shot from a slight side angle, waist up, 50mm", dshotM:"Ungestellt, halbnah, leicht seitlich, ab der Taille",
+   outfitM:"a soft olive overshirt over a plain tee, sleeves pushed up", doutfitM:"Weiches olivfarbenes Überhemd über schlichtem Shirt, Ärmel hochgeschoben",
+   poseM:"sitting at a table, one forearm resting on it, mid-conversation, relaxed, a small smile", dposeM:"Am Tisch sitzen, ein Unterarm aufgestützt, mitten im Gespräch, entspannt, kleines Lächeln",
+   sceneM:"a small bakery cafe by the window, a plain coffee and a plate on the table, blurred wooden chairs behind", dsceneM:"Kleines Café am Fenster, einfacher Kaffee und ein Teller auf dem Tisch, Holzstühle unscharf dahinter",
+   shot:"medium shot from a slight side angle, waist up, 50mm", dshot:"Halbnah, leicht seitlich, ab der Taille",
+   outfit:"knotted linen shirt in mauve", doutfit:"Geknotetes Leinenhemd in Mauve",
+   pose:"sitting at a table, mid-conversation, relaxed, small smile", dpose:"Am Tisch sitzen, mitten im Gespräch, entspannt, kleines Lächeln",
+   scene:"small café by a window, blurred wooden tables and plants", dscene:"Kleines Café am Fenster, Holztische und Pflanzen unscharf",
+   light:"warm afternoon light through the window", dlight:"Warmes Nachmittagslicht durchs Fenster",
+   style:"candid lifestyle photography, subtle film grain, ultra-photorealistic, real photograph, not a render", dstyle:"Ungestellt, feines Filmkorn, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"08",t:"Nachmittag",h:"Spaziergang",
+   shotM:"a three-quarter body shot, 85mm, shallow depth of field", dshotM:"Dreiviertelfigur, 85mm, Hintergrund unscharf",
+   outfitM:"an open beige linen shirt over a white tee, light fabric moving in the wind", doutfitM:"Offenes beiges Leinenhemd über weissem Shirt, leichter Stoff im Wind",
+   poseM:"walking slowly, hands in his pockets, looking off to the side", dposeM:"Langsam gehen, Hände in den Taschen, zur Seite schauen",
+   sceneM:"a quiet tree-lined street, background softly blurred", dsceneM:"Ruhige Allee, Hintergrund weich unscharf",
+   shot:"three-quarter body shot, 85mm, shallow depth of field", dshot:"Dreiviertelfigur, 85mm, Hintergrund stark unscharf",
+   outfit:"flowing cream dress, light fabric moving in the wind", doutfit:"Fließendes cremefarbenes Kleid, leichter Stoff im Wind",
+   pose:"walking slowly, turning her head back toward the camera", dpose:"Langsam gehen, den Kopf zurück zur Kamera drehen",
+   scene:"quiet tree-lined street, background softly blurred", dscene:"Ruhige Allee, Hintergrund weich unscharf",
+   light:"bright afternoon, soft shade", dlight:"Heller Nachmittag, weicher Schatten",
+   style:"cinematic photography, warm tones, ultra-photorealistic, real photograph, not a render", dstyle:"Kinolook, warme Töne, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"09",t:"Nachmittag",h:"Sport",
+   shotM:"a medium shot, 50mm", dshotM:"Halbnah",
+   outfitM:"a fitted sportswear set in warm grey", doutfitM:"Eng anliegendes Sportset in warmem Grau",
+   poseM:"sitting on a bench after a set, forearms on his knees, catching his breath", dposeM:"Nach dem Satz auf der Bank sitzen, Unterarme auf den Knien, durchatmen",
+   sceneM:"a bright gym or studio, plain wall, soft equipment blurred behind", dsceneM:"Helles Studio, schlichte Wand, Geräte unscharf im Hintergrund",
+   shot:"medium shot, 50mm", dshot:"Halbnah",
+   outfit:"a fitted sportswear set in warm beige", doutfit:"Eng anliegendes Sportset in warmem Beige",
+   pose:"sitting on a mat, taking a break, wiping her forehead, calm", dpose:"Auf der Matte sitzen, Pause, sich die Stirn abwischen, ruhig",
+   scene:"bright studio or living room, plain wall, yoga mat", dscene:"Helles Studio oder Wohnzimmer, schlichte Wand, Yogamatte",
+   light:"clean even daylight", dlight:"Klares gleichmäßiges Tageslicht",
+   style:"natural lifestyle photography, visible skin texture, ultra-photorealistic, real photograph, not a render", dstyle:"Natürliche Lifestyle-Fotografie, sichtbare Hauttextur, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"10",t:"Abends",h:"Goldene Stunde",
+   shotM:"a three-quarter body shot, 85mm, shallow depth of field", dshotM:"Dreiviertelfigur, 85mm, Hintergrund unscharf",
+   outfitM:"a light knit sweater in warm sand", doutfitM:"Leichter Strickpullover in warmem Sand",
+   poseM:"standing outside, hands in his pockets, looking into the distance", dposeM:"Draussen stehen, Hände in den Taschen, in die Ferne schauen",
+   sceneM:"an open field or quiet street in the early evening", dsceneM:"Offenes Feld oder ruhige Strasse am frühen Abend",
+   shot:"three-quarter body shot, 85mm, shallow depth of field", dshot:"Dreiviertelfigur, 85mm, Hintergrund stark unscharf",
+   outfit:"flowing dress in dusty rose", doutfit:"Fließendes Kleid in Altrosa",
+   pose:"standing outside, head slightly tilted, eyes closed, calm", dpose:"Draußen stehen, Kopf leicht geneigt, Augen geschlossen, ruhig",
+   scene:"open field or quiet street in the early evening", dscene:"Offenes Feld oder ruhige Straße am frühen Abend",
+   light:"golden hour, low warm sun behind her, bright rim light on hair", dlight:"Goldene Stunde, tiefe warme Sonne hinter ihr, heller Saum im Haar",
+   style:"cinematic photography, warm tones, ultra-photorealistic, real photograph, not a render", dstyle:"Kinolook, warme Töne, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"11",t:"Abends",h:"Auf dem Sofa",
+   shotM:"a medium shot at eye level, 50mm", dshotM:"Halbnah, auf Augenhöhe",
+   outfitM:"a soft grey sweatshirt", doutfitM:"Weiches graues Sweatshirt",
+   poseM:"sitting on a sofa, one arm along the backrest, holding a ceramic mug", dposeM:"Auf dem Sofa sitzen, ein Arm auf der Lehne, Tasse in der Hand",
+   sceneM:"a warm living room, linen cushions, a soft blanket", dsceneM:"Warmes Wohnzimmer, Leinenkissen, weiche Decke",
+   shot:"medium shot, eye level, 50mm", dshot:"Halbnah, auf Augenhöhe",
+   outfit:"cream ribbed top under an open knit cardigan slipping off one shoulder", doutfit:"Cremefarbenes Rippshirt unter offenem Cardigan, der von einer Schulter rutscht",
+   pose:"sitting on a sofa with legs tucked in, holding a ceramic mug, looking down", dpose:"Auf dem Sofa sitzen, Beine angezogen, Tasse halten, nach unten schauen",
+   scene:"warm living room, cream sofa, linen cushions, soft blanket", dscene:"Warmes Wohnzimmer, cremefarbenes Sofa, Leinenkissen, weiche Decke",
+   light:"soft warm lamp light, low contrast", dlight:"Weiches warmes Lampenlicht, wenig Kontrast",
+   style:"quiet lifestyle photography, ultra-photorealistic, real photograph, not a render", dstyle:"Ruhige Lifestyle-Fotografie, ultra-fotorealistisch, echtes Foto, kein Render"},
+
+  {nr:"12",t:"Abends",h:"Gute Nacht",
+   shotM:"a close-up, 85mm, shallow depth of field", dshotM:"Nahaufnahme, 85mm, Hintergrund unscharf",
+   outfitM:"a plain cotton t-shirt", doutfitM:"Schlichtes Baumwoll-T-Shirt",
+   poseM:"lying in bed, reading a book, relaxed, eyes down", dposeM:"Im Bett liegen, ein Buch lesen, entspannt, Blick nach unten",
+   sceneM:"a dark bedroom, one small bedside lamp, white bedding", dsceneM:"Dunkles Schlafzimmer, eine kleine Nachttischlampe, weisse Bettwäsche",
+   shot:"close-up, 85mm, shallow depth of field", dshot:"Nahaufnahme, 85mm, Hintergrund stark unscharf",
+   outfit:"cream cami top", doutfit:"Cremefarbenes Trägertop",
+   pose:"lying in bed, reading a book, relaxed, eyes down", dpose:"Im Bett liegen, ein Buch lesen, entspannt, Blick nach unten",
+   scene:"dark bedroom, one small bedside lamp, white bedding", dscene:"Dunkles Schlafzimmer, eine kleine Nachttischlampe, weiße Bettwäsche",
+   light:"single warm lamp from the side, everything else dark", dlight:"Eine warme Lampe von der Seite, alles andere dunkel",
+   style:"intimate lifestyle photography, natural skin texture, ultra-photorealistic, real photograph, not a render", dstyle:"Intime Lifestyle-Fotografie, echte Hauttextur, ultra-fotorealistisch, echtes Foto, kein Render"}
+];
+
+let modus = "lang";
+let werkzeug = "hf";
+let tattoo = false;
+
+function sel(id){ return document.getElementById(id); }
+
+function fuellen(id, liste){
+  const s = sel(id);
+  liste.forEach(([de,en],i)=>{
+    const o = document.createElement("option");
+    o.value = String(i); o.textContent = de; s.appendChild(o);
+  });
+}
+
+function istMann(){ return sel("f-wer").value === "1"; }
+function L(name){ return istMann() && OPT[name+"_m"] ? OPT[name+"_m"] : OPT[name]; }
+function wahl(id, name){ const l = L(name); return (l[+sel(id).value] || l[0])[1]; }
+
+function basisZeile(){
+  const m = istMann();
+  if (modus === "kurz") return m ? KURZ_M : KURZ_W;
+  const tuch = m ? "" : OPT.kopftuch[+sel("f-kopftuch").value][1];
+  const laengeV = wahl("f-laenge","laenge");
+  const glatze = /shaved head|bald|no hair/.test(laengeV);
+  const haare = tuch ? tuch
+    : (glatze ? laengeV : laengeV + ", " + OPT.farbe[+sel("f-farbe").value][1]);
+  const teile = [
+    (m ? "a man in his " : "a woman in her ") + OPT.alter[+sel("f-alter").value][1],
+    wahl("f-statur","statur"),
+    haare,
+    m ? OPT.bart[+sel("f-bart").value][1] : "",
+    OPT.haut[+sel("f-haut").value][1],
+    OPT.brille[+sel("f-brille").value][1],
+    wahl("f-schmuck","schmuck")
+  ].filter(Boolean);
+  return teile.join(", ");
+}
+
+function shotVon(p){ return (istMann() && p.shotM) ? p.shotM : p.shot; }
+function sceneVon(p){ return (istMann() && p.sceneM) ? p.sceneM : p.scene; }
+function dShotVon(p){ return (istMann() && p.dshotM) ? p.dshotM : p.dshot; }
+function dSceneVon(p){ return (istMann() && p.dsceneM) ? p.dsceneM : p.dscene; }
+function outfitVon(p){ return (istMann() && p.outfitM) ? p.outfitM : p.outfit; }
+function poseVon(p){ return (istMann() && p.poseM) ? p.poseM : p.pose; }
+function dOutfitVon(p){ return (istMann() && p.doutfitM) ? p.doutfitM : p.doutfit; }
+function dPoseVon(p){ return (istMann() && p.dposeM) ? p.dposeM : p.dpose; }
+
+function gptText(p){
+  const kopf = tattoo ? GPT_KOPF_TAT : GPT_KOPF;
+  const m = istMann();
+  const wer = (modus === "kurz") ? (m ? GPT_KURZ_M : GPT_KURZ_W) : ("The subject is " + basisZeile() + ".");
+  const Er = m ? "He" : "She";
+  const art = t => /^(a |an |the )/i.test(t) ? t : (/^[aeiou]/i.test(t) ? "an " : "a ") + t;
+  const szene = "Frame it as " + art(shotVon(p)) + ". " + Er + " wears " + art(outfitVon(p)) + ". " + Er + " is "
+    + poseVon(p) + ". The scene is " + sceneVon(p) + ". Lighting is " + p.light + ".";
+  const stil = "Shoot it like " + CAM + ". The look should be " + p.style + ". " + GPT_ECHT;
+  return kopf + "\n\n" + wer + "\n\n" + szene + "\n\n" + stil
+    + " Output it in " + OPT.format[+sel("f-format").value][1] + " format.";
+}
+
+function promptText(p){
+  if (werkzeug === "gpt") return gptText(p);
+  const kopf = tattoo ? KOPF_TAT : KOPF_EIN;
+  return kopf + "\n\n" + basisZeile() + "\n\n"
+    + "SHOT: " + shotVon(p) + "\n"
+    + CAM + "\n"
+    + "OUTFIT: " + outfitVon(p) + "\n"
+    + "POSE: " + poseVon(p) + "\n"
+    + "SCENE: " + sceneVon(p) + "\n"
+    + "LIGHTING: " + p.light + "\n"
+    + "STYLE: " + p.style + "\n\n"
+    + "ASPECT RATIO: " + OPT.format[+sel("f-format").value][1] + "\n\n"
+    + (tattoo ? NEG_TAT : NEG);
+}
+
+function kopieren(text, btn){
+  const fertig = ()=>{
+    const alt = btn.textContent;
+    btn.textContent = "Kopiert"; btn.classList.add("fertig");
+    setTimeout(()=>{ btn.textContent = alt; btn.classList.remove("fertig"); }, 1400);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(fertig, ()=>ersatz(text,fertig));
+  } else { ersatz(text, fertig); }
+}
+function ersatz(text, cb){
+  const ta = document.createElement("textarea");
+  ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); cb(); }catch(e){}
+  document.body.removeChild(ta);
+}
+
+function karten(){
+  const wrap = document.getElementById("karten");
+  wrap.innerHTML = "";
+  P.forEach((p,i)=>{
+    const k = document.createElement("div");
+    k.className = "karte";
+    k.innerHTML =
+      '<div class="zeile"><div class="nr">'+p.nr+'</div>'
+      + '<div class="titel"><div class="h">'+p.h+'</div><div class="t">'+p.t+'</div></div>'
+      + (BILD[p.nr] ? '<div class="vorschau"><img src="'+BILD[p.nr]+'" alt="Beispiel '+p.h+'" loading="lazy"></div>' : '')
+      + '</div>'
+      + '<div class="code" data-code="'+i+'"></div>'
+      + '<div class="fuss">'
+        + '<button class="kopieren" type="button" data-kop="'+i+'">Kopieren</button>'
+        + '<button class="mini" type="button" data-de="'+i+'" aria-expanded="false">Auf Deutsch</button>'
+      + '</div>'
+      + '<div class="deutsch" id="de-'+i+'" hidden><table><tbody>'
+        + '<tr><th>Shot</th><td data-ds="'+i+'"></td></tr>'
+        + '<tr><th>Kamera</th><td>'+CAM_DE+'</td></tr>'
+        + '<tr><th>Identität</th><td>'+ID_DE+'</td></tr>'
+        + '<tr><th>Outfit</th><td data-do="'+i+'"></td></tr>'
+        + '<tr><th>Pose</th><td data-dp="'+i+'"></td></tr>'
+        + '<tr><th>Scene</th><td data-dsc="'+i+'"></td></tr>'
+        + '<tr><th>Lighting</th><td>'+p.dlight+'</td></tr>'
+        + '<tr><th>Style</th><td>'+p.dstyle+'</td></tr>'
+      + '</tbody></table></div>';
+    wrap.appendChild(k);
+  });
+
+  wrap.addEventListener("click", e=>{
+    const kb = e.target.closest("[data-kop]");
+    if (kb){ kopieren(promptText(P[+kb.dataset.kop]), kb); return; }
+    const db = e.target.closest("[data-de]");
+    if (db){
+      const box = document.getElementById("de-"+db.dataset.de);
+      const auf = box.hidden;
+      box.hidden = !auf;
+      db.setAttribute("aria-expanded", String(auf));
+      db.textContent = auf ? "Deutsch ausblenden" : "Auf Deutsch";
+    }
+  });
+}
+
+function neuzeichnen(){
+  document.getElementById("basis-out").textContent = basisZeile();
+  document.querySelectorAll("[data-code]").forEach(el=>{
+    el.textContent = promptText(P[+el.dataset.code]);
+  });
+  document.getElementById("felder").hidden = (modus === "kurz");
+  const m = istMann();
+  const tuchAn = !m && !!OPT.kopftuch[+sel("f-kopftuch").value][1];
+  const glatze = /shaved head|bald|no hair/.test(wahl("f-laenge","laenge"));
+  document.getElementById("w-bart").hidden = !m;
+  document.getElementById("w-kopftuch").hidden = m;
+  document.getElementById("w-laenge").hidden = tuchAn;
+  document.getElementById("w-farbe").hidden = tuchAn || glatze;
+  document.querySelectorAll("[data-ds]").forEach(el=>{ el.textContent = dShotVon(P[+el.dataset.ds]); });
+  document.querySelectorAll("[data-dsc]").forEach(el=>{ el.textContent = dSceneVon(P[+el.dataset.dsc]); });
+  document.querySelectorAll("[data-do]").forEach(el=>{ el.textContent = dOutfitVon(P[+el.dataset.do]); });
+  document.querySelectorAll("[data-dp]").forEach(el=>{ el.textContent = dPoseVon(P[+el.dataset.dp]); });
+  try{
+    localStorage.setItem("baukasten", JSON.stringify({
+      modus, tattoo, werkzeug, w: sel("f-wer").value, fo: sel("f-format").value, ba: sel("f-bart").value,
+      a: sel("f-alter").value, st: sel("f-statur").value, l: sel("f-laenge").value, f: sel("f-farbe").value,
+      k: sel("f-kopftuch").value, t: sel("f-haut").value,
+      b: sel("f-brille").value, s: sel("f-schmuck").value
+    }));
+  }catch(e){}
+}
+
+function fuellenGeschlecht(){
+  [["f-statur","statur"],["f-laenge","laenge"],["f-schmuck","schmuck"]].forEach(([id,name])=>{
+    const alt = +sel(id).value || 0;
+    const liste = L(name);
+    sel(id).innerHTML = "";
+    fuellen(id, liste);
+    sel(id).value = String(Math.min(alt, liste.length - 1));
+  });
+}
+fuellen("f-wer", OPT.wer);
+fuellen("f-format", OPT.format);
+fuellen("f-bart", OPT.bart);
+fuellen("f-alter", OPT.alter);
+fuellen("f-statur", OPT.statur);
+fuellen("f-laenge", OPT.laenge);
+fuellen("f-farbe", OPT.farbe);
+fuellen("f-kopftuch", OPT.kopftuch);
+fuellen("f-haut", OPT.haut);
+fuellen("f-brille", OPT.brille);
+fuellen("f-schmuck", OPT.schmuck);
+sel("f-wer").value = "0";
+sel("f-format").value = "0";
+sel("f-bart").value = "0";
+sel("f-alter").value = "2";
+sel("f-statur").value = "0";
+sel("f-laenge").value = "0";
+sel("f-farbe").value = "0";
+sel("f-kopftuch").value = "0";
+sel("f-haut").value = "0";
+sel("f-brille").value = "0";
+sel("f-schmuck").value = "0";
+
+try{
+  const g = JSON.parse(localStorage.getItem("baukasten") || "null");
+  if (g){
+    modus = g.modus === "kurz" ? "kurz" : "lang";
+    werkzeug = g.werkzeug === "gpt" ? "gpt" : "hf";
+    tattoo = !!g.tattoo;
+    if (g.w) sel("f-wer").value = g.w;
+    if (g.fo) sel("f-format").value = g.fo;
+    if (g.ba) sel("f-bart").value = g.ba;
+    if (g.a) sel("f-alter").value = g.a;
+    if (g.st) sel("f-statur").value = g.st;
+    if (g.l) sel("f-laenge").value = g.l;
+    if (g.f) sel("f-farbe").value = g.f;
+    if (g.k) sel("f-kopftuch").value = g.k;
+    if (g.t) sel("f-haut").value = g.t;
+    if (g.b) sel("f-brille").value = g.b;
+    if (g.s) sel("f-schmuck").value = g.s;
+  }
+}catch(e){}
+
+fuellenGeschlecht();
+karten();
+
+document.querySelectorAll("[data-werk]").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    werkzeug = b.dataset.werk;
+    document.querySelectorAll("[data-werk]").forEach(x=>
+      x.setAttribute("aria-pressed", String(x.dataset.werk === werkzeug)));
+    neuzeichnen();
+  });
+});
+document.querySelectorAll("[data-modus]").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    modus = b.dataset.modus;
+    document.querySelectorAll("[data-modus]").forEach(x=>
+      x.setAttribute("aria-pressed", String(x.dataset.modus === modus)));
+    neuzeichnen();
+  });
+});
+document.getElementById("btn-tattoo").addEventListener("click", function(){
+  tattoo = !tattoo;
+  this.setAttribute("aria-pressed", String(tattoo));
+  neuzeichnen();
+});
+["f-format","f-alter","f-bart","f-statur","f-laenge","f-farbe","f-kopftuch","f-haut","f-brille","f-schmuck"].forEach(id=>
+  sel(id).addEventListener("change", neuzeichnen));
+sel("f-wer").addEventListener("change", ()=>{ fuellenGeschlecht(); neuzeichnen(); });
+
+function werKnoepfe(){
+  document.querySelectorAll("[data-wer]").forEach(x=>
+    x.setAttribute("aria-pressed", String(x.dataset.wer === sel("f-wer").value)));
+}
+document.querySelectorAll("[data-wer]").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    sel("f-wer").value = b.dataset.wer;
+    werKnoepfe(); fuellenGeschlecht(); neuzeichnen();
+  });
+});
+werKnoepfe();
+document.getElementById("kop-basis").addEventListener("click", function(){
+  kopieren(basisZeile(), this);
+});
+
+document.querySelectorAll("[data-modus]").forEach(x=>
+  x.setAttribute("aria-pressed", String(x.dataset.modus === modus)));
+document.querySelectorAll("[data-werk]").forEach(x=>
+  x.setAttribute("aria-pressed", String(x.dataset.werk === werkzeug)));
+document.getElementById("btn-tattoo").setAttribute("aria-pressed", String(tattoo));
+neuzeichnen();
+</script>
+
+</body></html>
