@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>3-Sätze-Reel – Prompts von Liliya Avramova</title>
+<meta name="description" content="Alle Prompts zu meinem Reel „3 Sätze, die ich mir anhören musste“ – zum Kopieren, mit Anleitung auf Deutsch.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Lato:wght@300;400;700&display=swap">
+<style>
+:root{
+  --creme:#F6F0E6;--flaeche:#FFFFFF;--flaeche-2:#EFE6D9;--linie:#DCCFBC;
+  --schrift:#1C1917;--schrift-leise:#6B6259;--wein:#7B2C36;--gold:#B08542;--rost:#a14f37;
+  --radius:3px;color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--schrift);font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+.huelle{max-width:880px;margin:0 auto;padding:0 16px 90px}
+.kopf{padding:48px 0 30px;border-bottom:1px solid var(--linie);display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+@media(min-width:760px){.kopf{grid-template-columns:1.25fr .75fr}}
+.marke{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--wein);margin-bottom:14px}
+h1{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(34px,7vw,54px);line-height:1.06;margin:0;text-wrap:balance}
+h1 em{color:var(--rost)}
+.kopf p{max-width:52ch;margin:16px 0 0;color:var(--schrift-leise);font-size:16px}
+.video{width:100%;max-width:300px;justify-self:center;aspect-ratio:9/16;border-radius:14px;background:#000;box-shadow:0 10px 30px rgba(28,25,23,.18);border:5px solid #fff}
+.werkzeuge{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{font-size:12px;letter-spacing:.06em;background:var(--flaeche);border:1px solid var(--linie);padding:5px 11px;border-radius:999px;color:var(--schrift-leise)}
+.chip b{color:var(--schrift);font-weight:700}
+section{padding-top:52px}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--wein);margin-bottom:10px}
+h2{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(25px,4vw,32px);line-height:1.15;margin:0 0 12px;text-wrap:balance}
+.lauf{max-width:64ch;color:var(--schrift-leise);font-size:15.5px;margin:0 0 8px}
+.lauf strong{color:var(--schrift);font-weight:700}
+.schritte{counter-reset:s;list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.schritte li{counter-increment:s;background:var(--flaeche);border:1px solid var(--linie);border-radius:var(--radius);padding:16px 18px 16px 58px;position:relative;font-size:15px}
+.schritte li::before{content:counter(s);position:absolute;left:18px;top:14px;font-family:'Playfair Display',serif;font-size:26px;color:var(--gold);line-height:1}
+.schritte b{font-weight:700}
+.karte{background:var(--flaeche);border:1px solid var(--linie);border-radius:var(--radius);margin-top:22px;overflow:hidden}
+.karte-kopf{padding:18px 20px 14px;border-bottom:1px solid var(--linie)}
+.karte-kopf .art{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.karte-kopf h3{font-family:'Playfair Display',serif;font-weight:500;font-size:22px;margin:4px 0 6px}
+.karte-kopf p{margin:0;color:var(--schrift-leise);font-size:14.5px}
+.upload{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.upload span{font-size:12px;background:var(--flaeche-2);padding:3px 9px;border-radius:999px}
+.upload span b{color:var(--wein);font-weight:700}
+.prompt{position:relative;background:#fbf8f3}
+.prompt pre{margin:0;padding:18px 20px 64px;white-space:pre-wrap;word-wrap:break-word;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#2b2420;max-height:260px;overflow:hidden;transition:max-height .3s}
+.prompt.offen pre{max-height:none}
+.prompt .mark{background:#f3dfc9;border-radius:2px;padding:0 2px}
+.leiste{position:absolute;left:0;right:0;bottom:0;display:flex;gap:8px;justify-content:flex-end;padding:12px 14px;background:linear-gradient(transparent,#fbf8f3 40%)}
+button{font:700 12px 'Lato',sans-serif;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--schrift);background:var(--schrift);color:#fff;padding:9px 14px;border-radius:999px;cursor:pointer}
+button.leise{background:transparent;color:var(--schrift)}
+button.ok{background:var(--gold);border-color:var(--gold)}
+.tipps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:22px}
+.tipp{background:var(--flaeche);border:1px solid var(--linie);border-left:2px solid var(--gold);border-radius:var(--radius);padding:16px 18px;font-size:14.5px}
+.tipp b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:18px;margin-bottom:4px}
+.ari{margin-top:22px;background:var(--flaeche-2);border:1px solid var(--linie);border-radius:var(--radius);padding:24px 22px}
+.ari h3{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0 0 8px}
+.ari p{margin:0 0 16px;color:var(--schrift-leise);max-width:58ch}
+.ari a{display:inline-block;text-decoration:none;font:700 13px 'Lato',sans-serif;letter-spacing:.12em;text-transform:uppercase;background:var(--wein);color:#fff;padding:12px 20px;border-radius:999px}
+.ari small{display:block;margin-top:10px;color:var(--schrift-leise);font-size:12px}
+.fuss{margin-top:60px;padding-top:22px;border-top:1px solid var(--linie);font-size:13px;color:var(--schrift-leise)}
+</style>
+</head>
+<body>
+<div class="huelle">
+
+<header class="kopf">
+  <div>
+    <div class="marke">Liliya Avramova · Prompts</div>
+    <h1>3 Sätze, die ich mir <em>anhören</em> musste</h1>
+    <p>Hier sind alle Prompts zu meinem Reel. Kopier sie, setz dich selbst ein und mach deine eigene Version. Ich lerne das selbst noch – das hier ist genau der Weg, wie es bei mir funktioniert hat.</p>
+    <div class="werkzeuge">
+      <span class="chip">Video: <b>Seedance 2.5</b> in Higgsfield</span>
+      <span class="chip">Bilder: <b>ChatGPT</b></span>
+      <span class="chip">3 Clips · je 4–5 Sek.</span>
+    </div>
+  </div>
+  <video class="video" src="reel.mp4" poster="poster.jpg" controls playsinline muted loop></video>
+</header>
+
+<section>
+  <div class="eyebrow">So gehst du vor</div>
+  <h2>Der Ablauf in 5 Schritten</h2>
+  <p class="lauf">Jeder Clip nutzt dieselbe Person und dasselbe Zimmer. Deshalb wirkt das Reel wie eine durchgehende Geschichte.</p>
+  <ol class="schritte">
+    <li><b>Charakter-Blatt</b> in ChatGPT erstellen – mit 2–3 echten Fotos von dir.</li>
+    <li><b>Zimmer-Bild</b> erstellen – wichtig ist die <b>leere Wand über dem Bett</b>.</li>
+    <li><b>Karten bauen:</b> deinen Satz als Instagram-Kommentar und als Story-Frage (z. B. in Canva), Hintergrund freistellen, als PNG speichern.</li>
+    <li>In Higgsfield <b>Seedance 2.5</b> wählen, Modus <b>Omni Reference</b>, Format 9:16. Bilder in der angegebenen Reihenfolge hochladen, Prompt einfügen.</li>
+    <li>Clips zusammenschneiden, Musik drunter, <b>„KI-generiert“</b> draufschreiben.</li>
+  </ol>
+</section>
+
+<section>
+  <div class="eyebrow">Zuerst</div>
+  <h2>Charakter & Zimmer</h2>
+  <p class="lauf">Die <span class="mark" style="background:#f3dfc9;padding:0 3px">markierten Stellen</span> ersetzt du mit deiner eigenen Beschreibung.</p>
+
+  <div class="karte">
+    <div class="karte-kopf">
+      <div class="art">Bild · ChatGPT</div>
+      <h3>Charakter-Blatt</h3>
+      <p>Drei Ansichten in einem Bild. So bleiben Gesicht, Haare und Outfit in jedem Clip gleich.</p>
+      <div class="upload"><span>Hochladen: <b>2–3 echte Fotos</b> von dir (frontal, gutes Licht)</span></div>
+    </div>
+    <div class="prompt"><pre>Use case: identity-preserve.
+Character reference sheet of the woman in the attached reference photos: three photos side by side in one wide 16:9 image, separated by thin white gaps, on a plain seamless light-grey studio background. Soft, even studio lighting, photorealistic, sharp focus.
+
+Panel 1 (left): full body, front view. She sits cross-legged on a plain light-grey floor cushion, hands resting on her knees, torso facing the camera, calm neutral expression, looking at the camera.
+Panel 2 (middle): full body, front view, standing straight, arms relaxed at her sides, looking at the camera with a gentle, confident closed-mouth smile.
+Panel 3 (right): close-up portrait from the chest up, front view, looking straight into the camera with a warm, slight smile.
+
+The same woman in all three panels, exactly the woman from the reference photos: preserve her exact recognizable face and facial proportions, natural skin texture and visible pores, <span class="mark">around 38 years old</span>. <span class="mark">Long, straight, jet-black hair with a center part</span>. <span class="mark">Rose-gold half-rim cat-eye glasses, twisted rose-gold hoop earrings, gold medallion necklace</span>.
+
+Body: a believable ordinary, healthy build, natural proportions. Not model-thin, not curvy, no enlarged bust, no cinched waist.
+
+Outfit: <span class="mark">a fitted black ribbed tank top, mid-blue straight-leg jeans, barefoot</span>. No logos.
+
+Face, hair, jewelry and outfit are exactly identical in every panel. No beautifying, no smoothing, no making younger or slimmer. No text, no logos, no props, no other people.</pre>
+      <div class="leiste"><button class="leise" data-mehr>Ganz anzeigen</button><button data-kopie>Kopieren</button></div></div>
+  </div>
+
+  <div class="karte">
+    <div class="karte-kopf">
+      <div class="art">Bild · ChatGPT</div>
+      <h3>Gemütliches Herbst-Schlafzimmer</h3>
+      <p>Gerade von vorne, symmetrisch. Die leere Wand ist der wichtigste Teil – dort schwebt später dein Satz.</p>
+      <div class="upload"><span>Hochladen: <b>nichts</b></span></div>
+    </div>
+    <div class="prompt"><pre>Vertical 9:16 smartphone photo of a calm, cozy adult autumn bedroom, shot straight on from the foot of the bed at mattress height. Perfectly symmetrical, centered composition. No people.
+
+Upper half of the frame: a large, completely empty warm off-white plaster wall with nothing on it – no art, no shelves, no fairy lights, no decor. Two matching ceramic table lamps with linen shades on the nightstands glow warm amber and cast soft light up the wall.
+
+Lower half of the frame: a double bed with a simple upholstered headboard in light oatmeal linen. Rumpled rust-terracotta linen duvet, two cream pillows and two rust linen pillows against the headboard, one mustard velvet lumbar pillow in front. A chunky cream cable-knit throw draped across the foot of the bed. A natural jute rug on light oak floorboards in the foreground.
+
+Left side: a light oak nightstand with a tall cream ceramic vase holding dried pampas grass and autumn branches. Right side: a matching light oak nightstand with a small stack of books and a cream candle in a glass.
+
+Lighting: late-afternoon golden daylight from a window at screen-left mixed with the warm amber glow of the lamps. Warm, calm rust-and-cream mood. Realistic, slightly soft smartphone-camera look, natural colors and textures. No text, no logos, no people.</pre>
+      <div class="leiste"><button class="leise" data-mehr>Ganz anzeigen</button><button data-kopie>Kopieren</button></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Die Videos</div>
+  <h2>Die 3 Video-Prompts</h2>
+  <p class="lauf"><strong>Die Reihenfolge beim Hochladen ist wichtig.</strong> Die @Image-Nummern im Prompt richten sich danach. Tausch deinen Satz und deine Beschreibung aus, aber lass die Struktur, wie sie ist.</p>
+
+  <div class="karte">
+    <div class="karte-kopf">
+      <div class="art">Clip 1 · Zerknüllen</div>
+      <h3>Greifen, zerknüllen, wegwerfen</h3>
+      <p>Sie greift den Kommentar über ihrem Kopf, knüllt ihn zusammen und wirft ihn aus dem Bild.</p>
+      <div class="upload"><span><b>@Image1</b> Zimmer</span><span><b>@Image2</b> Charakter-Blatt</span><span><b>@Image3</b> echtes Foto (Gesicht)</span><span><b>@Image4</b> Kommentar-Karte</span></div>
+    </div>
+    <div class="prompt"><pre>STYLE AND REALISM
+Ultra-realistic, unretouched real-life footage, as if filmed on an iPhone 15 Pro standing on a small tripod at the foot of the bed. Natural 24 fps motion, subtle sensor grain, true-to-life colors, slight natural softness of real phone video. Not cinematic, not CGI, not a commercial. Real skin: visible pores, fine lines around the eyes and mouth, natural skin tone variation. Real hair with individual flyaway strands. Real fabric with wrinkles.
+
+SCENE CONTEXT
+A real woman <span class="mark">around 38 with long straight jet-black hair and rose-gold glasses</span> sits on her bed in a calm, cozy autumn bedroom. A flat social-media comment card hangs motionless above her head with the text "<span class="mark">Dafür hast du doch keine Zeit</span>". She reaches up with both hands, grabs it, crumples it into a paper ball and tosses it out of frame with her right hand.
+
+ACTIVE REFERENCES
+@Image1: bedroom location. 100% matches the reference.
+@Image2: character sheet for her body, outfit and proportions.
+@Image3: real photo of her face. Her face must match @Image3 exactly. No beautifying, not younger, not slimmer, no smoothing.
+@Image4: the comment card only, without any background. 100% identical to the reference in shape, color, layout, font and text.
+
+CARD APPEARANCE
+The card is a matte, opaque, non-emissive object, like a thick sheet of matte paper. It emits no light. Hard, crisp edges against the wall, zero halo, zero bloom, zero glow. Its brightness matches the cream pillows in the same room light. Lit by the room only.
+
+FIRST FRAME AND SPATIAL BLOCKING
+The first frame already shows her on the bed and the card above her. No empty establishing frame. She sits cross-legged in the center of the bed, torso facing the camera, hands resting on her knees, calm relaxed face. The card hangs about 20 cm above the top of her head, horizontally centered, upper third of the frame, completely still.
+
+CAMERA AND OPTICS
+Single continuous take. Locked-off tripod phone camera at her seated eye height, frontal, natural 26 mm phone perspective, no distortion. The frame shows the card at the top and her whole seated figure on the bed. No zoom, no camera movement.
+
+ACTION TIMING
+0-1 s: She looks up at the card with a calm, neutral face and reads it. A tiny, subtle reaction: one eyebrow lifts very slightly. Relaxed and understated, like a real person, not acting. Eyes open, one natural blink.
+1-2 s: Both arms reach up to the card. Her left hand grips the card's left edge, her right hand the right edge. The card bends between her hands like thin matte paper.
+2-3 s: Both hands at chest height crush the card between her palms. It folds and crinkles into an off-white paper ball. She squeezes it twice.
+3-4 s: Her right hand tosses the paper ball out of frame to screen-right on a short arc. She looks into the camera with a soft, genuine, slightly amused closed-mouth smile and a quiet exhale through her nose. The wall above her is empty.
+
+PHYSICS
+Before she touches it, the card is completely static. Once grabbed it behaves like real thin matte paper: bends, creases, crinkles and holds its crumpled shape. The light ball falls on a natural arc. Her hair and clothes move naturally.
+
+LIGHTING
+Warm amber light from the two lamps and soft golden window light from screen-left, natural falloff, soft real shadows. No studio light.
+
+AUDIO
+Quiet room tone, a crisp paper crinkle while she crumples the card, a quiet nose exhale at the end. No dialogue, no music.
+
+POSITIVE CONSTRAINTS
+One real woman only, face exactly as @Image3, body and outfit as @Image2. The card is static, matte, non-glowing and identical to @Image4 until grabbed. Subtle natural micro-expressions only, no exaggerated faces, no pouting, no closed eyes. Natural correct hands and fingers. Realistic phone footage, stable picture, no flickering, no plastic skin, no CGI look.</pre>
+      <div class="leiste"><button class="leise" data-mehr>Ganz anzeigen</button><button data-kopie>Kopieren</button></div></div>
+  </div>
+
+  <div class="karte">
+    <div class="karte-kopf">
+      <div class="art">Clip 2 · Verbrennen</div>
+      <h3>Mit dem Feuerzeug anzünden</h3>
+      <p>Die Story-Frage über ihrem Kopf brennt komplett ab, bis nur noch Asche übrig ist. Länge: 5 Sekunden.</p>
+      <div class="upload"><span><b>@Image1</b> Zimmer</span><span><b>@Image2</b> Charakter-Blatt</span><span><b>@Image3</b> echtes Foto (Gesicht)</span><span><b>@Image4</b> Story-Frage-Karte</span></div>
+    </div>
+    <div class="prompt"><pre>STYLE AND REALISM
+Ultra-realistic, unretouched real-life footage, as if filmed on an iPhone 15 Pro on a small tripod at the foot of the bed. Natural 24 fps motion, subtle sensor grain, true-to-life colors. Not cinematic, not CGI. Real skin with pores and fine lines, real hair with flyaway strands.
+
+SCENE CONTEXT
+A real woman <span class="mark">around 38 with long straight jet-black hair and rose-gold glasses</span> sits cross-legged on her bed in a calm, cozy autumn bedroom. A white paper card hangs in the air above her head. She lights its bottom edge with a lighter. The ENTIRE card catches fire and is COMPLETELY consumed by the flames: the fire spreads across the full width of the card and climbs to the top, the whole card turns to black ash and falls apart. At the end NOTHING of the card remains, only empty wall and a little smoke.
+
+ACTIVE REFERENCES
+@Image1: bedroom location. 100% matches the reference.
+@Image2: her body, outfit and proportions.
+@Image3: real photo of her face; her face must match exactly. No beautifying.
+@Image4: the card: white rounded paper card with bold black text "<span class="mark">Mit 38 fängt man nicht neu an</span>". It is a real piece of thin white paper hanging in the air, matte, no glow.
+
+FIRST FRAME
+She already sits on the bed, the card already hangs about 20 cm above her head, centered, upper third of the frame. Her right hand holds a black lighter with a small flame right under the bottom edge of the card. Calm face, eyes open.
+
+CAMERA
+Single continuous take, locked-off frontal tripod camera at her seated eye height, natural phone perspective, card at the top and her whole seated figure visible. No camera movement.
+
+ACTION TIMING
+0-1 s: The flame touches the bottom edge, the whole bottom edge catches fire. She watches calmly, eyes open, one natural blink. She lowers the lighter to her knee.
+1-3 s: Flames spread across the ENTIRE width of the card and race upward. The paper blackens, curls and breaks apart. The text chars and disappears in the fire. Large pieces of black ash break off and float down past her shoulders.
+3-4 s: The last burning top edge burns away. The card is completely gone. Only a few glowing ash flakes and a thin wisp of smoke remain, then they fade.
+4-5 s: Empty wall above her head, no card, no paper left. She looks into the camera with a soft, genuine, slightly amused closed-mouth smile and a quiet exhale through her nose.
+
+PHYSICS
+Real thin paper burning: fast-spreading flame front over the whole card, orange glowing edges, curling black char, ash flakes falling slowly under gravity, small sparks rising, thin grey smoke. The card burns where it hangs and is fully destroyed. Her hair stays clear of the flame.
+
+LIGHTING
+Warm lamp light and soft window light, the fire adds flickering warm light on her face, glasses and the wall.
+
+AUDIO
+Lighter click, crackle and whoosh of burning paper, then quiet room tone and a soft nose exhale. No music, no dialogue.
+
+POSITIVE CONSTRAINTS
+One real woman, face exactly as @Image3, outfit as @Image2. The whole card burns completely and disappears; empty wall at the end. Subtle natural expressions, no pouting, no closed eyes. Natural hands. Realistic phone footage, no CGI look.</pre>
+      <div class="leiste"><button class="leise" data-mehr>Ganz anzeigen</button><button data-kopie>Kopieren</button></div></div>
+  </div>
+
+  <div class="karte">
+    <div class="karte-kopf">
+      <div class="art">Clip 3 · Wegwischen</div>
+      <h3>Ansprühen und wegwischen</h3>
+      <p>Eine iPhone-Benachrichtigung wird angesprüht und wie ein Fenster weggeputzt. Die Benachrichtigung ist im Text beschrieben – keine Karte nötig.</p>
+      <div class="upload"><span><b>@Image1</b> Zimmer</span><span><b>@Image2</b> Charakter-Blatt</span><span><b>@Image3</b> echtes Foto (Gesicht)</span></div>
+    </div>
+    <div class="prompt"><pre>STYLE AND REALISM
+Ultra-realistic, unretouched real-life footage, as if filmed on an iPhone 15 Pro standing on a small tripod at the foot of the bed. Natural 24 fps motion, subtle sensor grain, true-to-life colors, slight natural softness of real phone video. Not cinematic, not CGI, not a commercial. Real skin: visible pores, fine lines around the eyes and mouth, natural skin tone variation. Real hair with individual flyaway strands. Real fabric with wrinkles.
+
+SCENE CONTEXT
+A real woman <span class="mark">around 38 with long straight jet-black hair and rose-gold glasses</span> sits on her bed in a calm, cozy autumn bedroom. An iPhone push notification from Instagram, made of translucent iOS glass, hangs motionless above her. She sprays it twice with a spray bottle, then wipes it with a cloth in two strokes, and the notification is wiped away completely, like a print wiped off a window.
+
+ACTIVE REFERENCES
+@Image1: bedroom location. 100% matches the reference.
+@Image2: character sheet for her body, outfit and proportions.
+@Image3: real photo of her face. Her face must match @Image3 exactly. No beautifying, not younger, not slimmer, no smoothing.
+
+NOTIFICATION DESIGN
+A native iOS notification banner floating in the room. Long horizontal rounded rectangle, about 4.5:1, large corner radius, perfectly flat, facing the camera. Translucent frosted smoky-grey iOS glass, the wall shows through softly blurred. Thin light hairline rim. No glow, no halo, no shadow, no 3D thickness. Left: the Instagram app icon. Right of it, two left-aligned lines in SF Pro: Line 1 "Neuer Kommentar" semibold white. Line 2 "<span class="mark">KI sieht bei dir eh fake aus</span>" regular white. Top right "jetzt" in light grey. Text spelled exactly as written.
+
+FIRST FRAME AND SPATIAL BLOCKING
+The first frame already shows her on the bed and the notification above her. No empty establishing frame. She sits cross-legged in the center of the bed, torso facing the camera. The notification hangs about 15 cm above the top of her head, horizontally centered, as wide as her shoulders, completely still. In her right hand a plain clear plastic spray bottle with a white trigger, in her left hand a folded light-grey microfiber cloth, both hands resting in her lap.
+
+CAMERA AND OPTICS
+Single continuous take. Locked-off tripod phone camera at her seated eye height, frontal, natural 26 mm phone perspective, no distortion. No zoom, no camera movement.
+
+ACTION TIMING
+0-1 s: She glances up at the notification, reads it, and gives a tiny, subtle reaction: a small single raised eyebrow. Relaxed, natural, understated, like a real person, not acting. One natural blink. She lifts the spray bottle.
+1-2 s: She squeezes the trigger twice. Two fine mists hit the glass, tiny droplets bead on it, a few drips run down.
+2-3.5 s: She lowers the bottle, presses the cloth flat on the glass and wipes one firm stroke left to right, then one stroke back. Wherever the cloth passes, the notification disappears completely, leaving only the empty wall.
+3.5-4 s: Clean empty wall above her. She lowers the cloth, looks into the camera and gives a soft, genuine, slightly amused closed-mouth smile with a quiet exhale through her nose.
+
+PHYSICS
+The notification is static until sprayed. The cloth slides with slight friction, real wrist and finger pressure. The notification smears slightly at the cloth's edge and is cleanly removed. Her hair and clothes move naturally.
+
+LIGHTING
+Warm amber light from the two lamps and soft golden window light from screen-left, natural falloff, soft real shadows. No studio light, small natural reflections on her glasses.
+
+AUDIO
+Quiet room tone, two short spray sounds, two soft squeaky wipes on wet glass, a quiet nose exhale. No dialogue, no music.
+
+POSITIVE CONSTRAINTS
+One real woman only, face exactly as @Image3, body and outfit as @Image2. Subtle, natural micro-expressions only, no exaggerated faces, no pouting. Natural correct hands and fingers. Spray bottle in right hand, cloth in left hand. Realistic phone footage, stable picture, no flickering, no plastic skin, no CGI look.</pre>
+      <div class="leiste"><button class="leise" data-mehr>Ganz anzeigen</button><button data-kopie>Kopieren</button></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Was ich beim Testen gelernt habe</div>
+  <h2>Tipps, die mir Versuche gespart haben</h2>
+  <div class="tipps">
+    <div class="tipp"><b>Echtes Foto mitgeben</b>Lade zusätzlich ein echtes Foto von dir als Gesichtsreferenz hoch. Das macht den grössten Unterschied, ob es wirklich nach dir aussieht.</div>
+    <div class="tipp"><b>Erst klein testen</b>Mach den ersten Versuch als Entwurf in 480p. Erst wenn die Bewegung stimmt, die gute Version in 720p oder 1080p.</div>
+    <div class="tipp"><b>Text nachträglich korrigieren</b>KI-Videos verschreiben oft Wörter. Generier die Bewegung trotzdem und leg den richtigen Text im Schnitt drüber.</div>
+    <div class="tipp"><b>Grimasse wegschneiden</b>Wenn das Gesicht in der ersten halben Sekunde komisch aussieht: einfach den Anfang abschneiden.</div>
+    <div class="tipp"><b>Karte ohne Hintergrund</b>Schneide deine Kommentar-Karte frei (PNG). Mit schwarzem Rand leuchtet sie im Video.</div>
+    <div class="tipp"><b>Klar schreiben, was passieren soll</b>Beim Verbrennen hat erst „die GANZE Karte verbrennt komplett, am Ende ist nichts mehr übrig“ funktioniert.</div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Wenn du mehr willst</div>
+  <div class="ari">
+    <h3>Solche Videos von Grund auf lernen</h3>
+    <p>Ich lerne das Grundwissen für KI-Reels mit der ARI – AI Reels &amp; Influence Academy. Wenn du nicht nur Prompts kopieren, sondern verstehen willst, wie du eigene baust, schau es dir an.</p>
+    <a href="#ARI-LINK-EINSETZEN" rel="sponsored">Mehr zu ARI</a>
+    <small>*Affiliate-Link</small>
+  </div>
+</section>
+
+<footer class="fuss">
+  Das Reel ist KI-generiert. Alle Prompts kostenlos zum Nachmachen. · @liliyaavramova.ki
+</footer>
+
+</div>
+<script>
+document.querySelectorAll('.prompt').forEach(function(p){
+  var pre=p.querySelector('pre');
+  p.querySelector('[data-mehr]').addEventListener('click',function(){
+    p.classList.toggle('offen');this.textContent=p.classList.contains('offen')?'Weniger':'Ganz anzeigen';
+  });
+  p.querySelector('[data-kopie]').addEventListener('click',function(){
+    var b=this,t=pre.innerText;
+    function fertig(){b.textContent='Kopiert ✓';b.classList.add('ok');setTimeout(function(){b.textContent='Kopieren';b.classList.remove('ok')},1800)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(fertig,function(){alt(t);fertig()})}else{alt(t);fertig()}
+  });
+});
+function alt(t){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(a)}
+</script>
+</body>
+</html>
