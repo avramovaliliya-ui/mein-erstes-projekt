@@ -42,6 +42,12 @@ h2{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(
 .upload{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .upload span{font-size:12px;background:var(--flaeche-2);padding:3px 9px;border-radius:999px}
 .upload span b{color:var(--wein);font-weight:700}
+.beispiel{margin-top:14px}
+.beispiel .lbl{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--schrift-leise);font-weight:700;margin-bottom:6px}
+.beispiel img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--linie)}
+.beispiel.schmal img{max-width:260px}
+.beispiel .reihe{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.beispiel .reihe img{width:auto;max-width:100%;height:110px}
 .prompt{position:relative;background:#fbf8f3}
 .prompt pre{margin:0;padding:18px 20px 64px;white-space:pre-wrap;word-wrap:break-word;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#2b2420;max-height:260px;overflow:hidden;transition:max-height .3s}
 .prompt.offen pre{max-height:none}
@@ -103,6 +109,7 @@ button.ok{background:var(--gold);border-color:var(--gold)}
       <h3>Charakter-Blatt</h3>
       <p>Drei Ansichten in einem Bild. So bleiben Gesicht, Haare und Outfit in jedem Clip gleich.</p>
       <div class="upload"><span>Hochladen: <b>2–3 Fotos</b> von dir oder deinem Avatar (frontal, gutes Licht)</span></div>
+      <div class="beispiel "><div class="lbl">Mein Ergebnis</div><img src="bilder/charakter-blatt.jpg" alt="Charakter-Blatt mit drei Ansichten"></div>
     </div>
     <div class="prompt"><pre>Use case: identity-preserve.
 Character reference sheet of the woman in the attached reference images: three photos side by side in one wide 16:9 image, separated by thin white gaps, on a plain seamless light-grey studio background. Soft, even studio lighting, photorealistic, sharp focus.
@@ -127,6 +134,7 @@ Face, hair, jewelry and outfit are exactly identical in every panel. No beautify
       <h3>Gemütliches Herbst-Schlafzimmer</h3>
       <p>Gerade von vorne, symmetrisch. Die leere Wand ist der wichtigste Teil – dort schwebt später dein Satz.</p>
       <div class="upload"><span>Hochladen: <b>nichts</b></span></div>
+      <div class="beispiel schmal"><div class="lbl">Mein Ergebnis</div><img src="bilder/zimmer.jpg" alt="Herbst-Schlafzimmer mit leerer Wand"></div>
     </div>
     <div class="prompt"><pre>Vertical 9:16 smartphone photo of a calm, cozy adult autumn bedroom, shot straight on from the foot of the bed at mattress height. Perfectly symmetrical, centered composition. No people.
 
@@ -152,6 +160,8 @@ Lighting: late-afternoon golden daylight from a window at screen-left mixed with
       <h3>Greifen, zerknüllen, wegwerfen</h3>
       <p>Sie greift den Kommentar über ihrem Kopf, knüllt ihn zusammen und wirft ihn aus dem Bild.</p>
       <div class="upload"><span><b>@Image1</b> Zimmer</span><span><b>@Image2</b> Charakter-Blatt</span><span><b>@Image3</b> Gesicht (Foto oder Avatar)</span><span><b>@Image4</b> Kommentar-Karte</span></div>
+      <div class="beispiel"><div class="lbl">Meine Karte (@Image4)</div><div class="reihe"><img src="bilder/karte-kommentar.jpg" alt="Kommentar-Karte"></div></div>
+      <div class="beispiel "><div class="lbl">So sieht der Clip aus – Anfang, Mitte, Ende</div><img src="bilder/clip1-ablauf.jpg" alt="Clip 1 in drei Bildern"></div>
     </div>
     <div class="prompt"><pre>STYLE AND REALISM
 Ultra-realistic, unretouched real-life footage, as if filmed on an iPhone 15 Pro standing on a small tripod at the foot of the bed. Natural 24 fps motion, subtle sensor grain, true-to-life colors, slight natural softness of real phone video. Not cinematic, not CGI, not a commercial. Real skin: visible pores, fine lines around the eyes and mouth, natural skin tone variation. Real hair with individual flyaway strands. Real fabric with wrinkles.
@@ -200,6 +210,8 @@ One real woman only, face exactly as @Image3, body and outfit as @Image2. The ca
       <h3>Mit dem Feuerzeug anzünden</h3>
       <p>Die Story-Frage über ihrem Kopf brennt komplett ab, bis nur noch Asche übrig ist. Länge: 5 Sekunden.</p>
       <div class="upload"><span><b>@Image1</b> Zimmer</span><span><b>@Image2</b> Charakter-Blatt</span><span><b>@Image3</b> Gesicht (Foto oder Avatar)</span><span><b>@Image4</b> Story-Frage-Karte</span></div>
+      <div class="beispiel"><div class="lbl">Meine Karte (@Image4)</div><div class="reihe"><img src="bilder/karte-frage.jpg" alt="Story-Frage-Karte"></div></div>
+      <div class="beispiel "><div class="lbl">So sieht der Clip aus – Anfang, Mitte, Ende</div><img src="bilder/clip2-ablauf.jpg" alt="Clip 2 in drei Bildern"></div>
     </div>
     <div class="prompt"><pre>STYLE AND REALISM
 Ultra-realistic, unretouched real-life footage, as if filmed on an iPhone 15 Pro on a small tripod at the foot of the bed. Natural 24 fps motion, subtle sensor grain, true-to-life colors. Not cinematic, not CGI. Real skin with pores and fine lines, real hair with flyaway strands.
@@ -245,6 +257,7 @@ One real woman, face exactly as @Image3, outfit as @Image2. The whole card burns
       <h3>Ansprühen und wegwischen</h3>
       <p>Eine iPhone-Benachrichtigung wird angesprüht und wie ein Fenster weggeputzt. Die Benachrichtigung ist im Text beschrieben – keine Karte nötig.</p>
       <div class="upload"><span><b>@Image1</b> Zimmer</span><span><b>@Image2</b> Charakter-Blatt</span><span><b>@Image3</b> Gesicht (Foto oder Avatar)</span></div>
+      <div class="beispiel "><div class="lbl">So sieht der Clip aus – Anfang, Mitte, Ende</div><img src="bilder/clip3-ablauf.jpg" alt="Clip 3 in drei Bildern"></div>
     </div>
     <div class="prompt"><pre>STYLE AND REALISM
 Ultra-realistic, unretouched real-life footage, as if filmed on an iPhone 15 Pro standing on a small tripod at the foot of the bed. Natural 24 fps motion, subtle sensor grain, true-to-life colors, slight natural softness of real phone video. Not cinematic, not CGI, not a commercial. Real skin: visible pores, fine lines around the eyes and mouth, natural skin tone variation. Real hair with individual flyaway strands. Real fabric with wrinkles.
