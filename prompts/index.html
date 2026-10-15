@@ -499,9 +499,9 @@ const OPT = {
   ],
   brille: [
     ["Feine silberne Cat-Eye-Brille","fine silver cat-eye glasses"],
-    ["Feine goldene Brille","fine gold-rimmed glasses"],
+    ["Feine goldene Brille","fine thin glasses with a warm yellow-gold metal frame (gold, not silver)"],
     ["Schwarze eckige Brille","black rectangular glasses"],
-    ["Keine Brille",""]
+    ["Keine Brille","no glasses at all (remove the glasses from the reference photo, bare face)"]
   ],
   schmuck: [
     ["Gold: Creolen, Medaillon, Ringe","gold creoles, fine gold medallion necklace, stacked thin gold rings"],
@@ -523,7 +523,7 @@ const GPT_KOPF = "Use the uploaded photo as the reference. Keep the person exact
 const GPT_KOPF_TAT = GPT_KOPF + " The second uploaded photo shows the tattoo on her left arm \u2014 reproduce it exactly, same motif, same placement.";
 const GPT_KURZ_W = "The subject is the woman in the uploaded photo — same face, same hair, same skin, same glasses, same jewellery, same body.";
 const GPT_KURZ_M = "The subject is the man in the uploaded photo — same face, same hair, same beard, same skin, same glasses, same body.";
-const GPT_ECHT = "Make it a real photograph: visible skin texture and fine pores, natural hands with five fingers, the glasses in their true shape, real ceramic and glass props rather than disposable ones, and no text or watermark anywhere in the image.";
+const GPT_ECHT = "Make it a real photograph: visible skin texture and fine pores, natural hands with five fingers, GLAS_SATZ real ceramic and glass props rather than disposable ones, and no text or watermark anywhere in the image.";
 const KURZ_W = "a woman, exactly as in the reference photo — same face, same hair, same skin, same glasses, same jewellery, same body";
 const KURZ_M = "a man, exactly as in the reference photo — same face, same hair, same beard, same skin, same glasses, same body";
 
@@ -572,7 +572,7 @@ const P = [
    poseM:"sitting in the driver's seat, one hand on the wheel, looking ahead", dposeM:"Am Steuer sitzen, eine Hand am Lenkrad, nach vorn schauen",
    sceneM:"a modern car interior, blurred street outside", dsceneM:"Modernes Autoinneres, draussen die Strasse unscharf",
    shot:"close-up from the passenger seat, 50mm", dshot:"Nahaufnahme vom Beifahrersitz aus",
-   outfit:"fitted black long-sleeve top", doutfit:"Eng anliegendes schwarzes Langarm-Oberteil",
+   outfit:"fitted black top with long sleeves reaching down to the wrists", doutfit:"Eng anliegendes schwarzes Langarm-Oberteil (Ärmel bis zum Handgelenk)",
    pose:"sitting in the driver's seat, one hand on the wheel, looking ahead", dpose:"Am Steuer sitzen, eine Hand am Lenkrad, nach vorn schauen",
    scene:"modern car interior, blurred street outside", dscene:"Modernes Autoinneres, draußen die Straße unscharf",
    light:"natural daylight through the windshield, catchlight in the eyes", dlight:"Tageslicht durch die Frontscheibe, Lichtpunkt in den Augen",
@@ -730,7 +730,9 @@ function gptText(p){
   const art = t => /^(a |an |the )/i.test(t) ? t : (/^[aeiou]/i.test(t) ? "an " : "a ") + t;
   const szene = "Frame it as " + art(shotVon(p)) + ". " + Er + " wears " + art(outfitVon(p)) + ". " + Er + " is "
     + poseVon(p) + ". The scene is " + sceneVon(p) + ". Lighting is " + p.light + ".";
-  const stil = "Shoot it like " + CAM + ". The look should be " + p.style + ". " + GPT_ECHT;
+  const ohneBrille = modus !== "kurz" && /^no glasses/.test(OPT.brille[+sel("f-brille").value][1]);
+  const echt = GPT_ECHT.replace("GLAS_SATZ ", ohneBrille ? "no glasses on the face, " : "the glasses in their true shape, ");
+  const stil = "Shoot it like " + CAM + ". The look should be " + p.style + ". " + echt;
   return kopf + "\n\n" + wer + "\n\n" + szene + "\n\n" + stil
     + " Output it in " + OPT.format[+sel("f-format").value][1] + " format.";
 }
@@ -747,7 +749,7 @@ function promptText(p){
     + "LIGHTING: " + p.light + "\n"
     + "STYLE: " + p.style + "\n\n"
     + "ASPECT RATIO: " + OPT.format[+sel("f-format").value][1] + "\n\n"
-    + (tattoo ? NEG_TAT : NEG);
+    + (tattoo ? NEG_TAT : NEG) + (/^no glasses/.test(OPT.brille[+sel("f-brille").value][1]) ? ", glasses, eyewear" : "");
 }
 
 function kopieren(text, btn){
