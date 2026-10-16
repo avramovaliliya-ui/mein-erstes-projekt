@@ -49,7 +49,7 @@ export const StoryB2: React.FC = () => {
   const line = interpolate(f, [0, 16], [0, 1], {...C, easing: out});
   const flip = interpolate(f, [18, 50], [90, 0], {...C, easing: out});
   const shine = interpolate(f, [52, 80], [-300, 900], C);
-  const pill = (t: string, x: number, o: number) => <div style={{position: "absolute", left: x, top: 260, padding: "10px 26px", borderRadius: 40, background: "white", fontFamily: "Poppins, sans-serif", fontWeight: 800, fontSize: 34, color: INK, opacity: o, boxShadow: "0 10px 24px rgba(0,0,0,.3)"}}>{t}</div>;
+  const pill = (t: string, x: number, o: number) => <div style={{position: "absolute", left: x, top: 1270, padding: "10px 26px", borderRadius: 40, background: "white", fontFamily: "Poppins, sans-serif", fontWeight: 800, fontSize: 34, color: INK, opacity: o, boxShadow: "0 10px 24px rgba(0,0,0,.3)"}}>{t}</div>;
   return (<AbsoluteFill style={{background: "#f3ece4", perspective: 1800}}>
     <style>{fonts}</style>
     <div style={{position: "absolute", left: 0, top: 0, width: 540, height: H, overflow: "hidden"}}><Img src={staticFile("selfie.jpg")} style={{width: 540, height: H, objectFit: "cover", objectPosition: "50% 30%"}} /></div>
