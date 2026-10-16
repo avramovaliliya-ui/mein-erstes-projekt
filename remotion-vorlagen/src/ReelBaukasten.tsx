@@ -15,9 +15,10 @@ const CTA_AT = 13.0;
 const ALL: Wd[] = [...(wMain as unknown as Wd[]), ...(wCta as unknown as Wd[]).map((w) => [w[0], w[1] + CTA_AT, w[2] + CTA_AT] as Wd)];
 const BK = ["bk_02.jpg", "bk_07.jpg", "bk_10.jpg", "bk_08.jpg", "bk_12.jpg"];
 
-const Talk: React.FC<{style?: React.CSSProperties}> = ({style}) => <OffthreadVideo src={staticFile("talk.mp4")} style={{...full, ...style}} muted />;
-const Cut: React.FC<{style?: React.CSSProperties}> = ({style}) => {
-  const f = useCurrentFrame();
+// "at" = start second of the surrounding Sequence, so mouth stays in sync with the voice
+const Talk: React.FC<{at: number; style?: React.CSSProperties}> = ({at, style}) => <OffthreadVideo src={staticFile("talk.mp4")} startFrom={Math.round(at * 30)} style={{...full, ...style}} muted />;
+const Cut: React.FC<{at: number; style?: React.CSSProperties}> = ({at, style}) => {
+  const f = useCurrentFrame() + Math.round(at * 30);
   const i = Math.min(309, Math.floor((f / 30) * 24));
   return <Img src={staticFile(`cut/${String(i).padStart(4, "0")}.webp`)} style={{...full, ...style}} />;
 };
@@ -42,10 +43,10 @@ const Captions: React.FC<{t: number; top: number}> = ({t, top}) => {
   );
 };
 
-const Pip: React.FC<{p: number}> = ({p}) => p <= 0 ? null : (
+const Pip: React.FC<{p: number; at?: number}> = ({p, at = 0}) => p <= 0 ? null : (
   <div style={{position: "absolute", left: 790 - 0, top: 1240, width: 250, height: 250, borderRadius: 140, overflow: "hidden", border: `7px solid ${GOLD}`,
     boxShadow: "0 18px 40px rgba(0,0,0,.45)", scale: String(p), opacity: Math.min(1, p * 2)}}>
-    <OffthreadVideo src={staticFile("talk.mp4")} style={{position: "absolute", width: 340, height: 604, left: -40, top: -2, maxWidth: "none"}} muted />
+    <OffthreadVideo src={staticFile("talk.mp4")} startFrom={Math.round(at * 30)} style={{position: "absolute", width: 340, height: 604, left: -40, top: -2, maxWidth: "none"}} muted />
   </div>
 );
 
@@ -62,7 +63,7 @@ export const ReelBaukasten: React.FC = () => {
 
       {/* 0–2.1 Handyfoto: punch zoom + selfie polaroid */}
       <Sequence from={0} durationInFrames={sec(2.1)} premountFor={fps}>
-        <Talk style={{scale: String(1 + interpolate(t, [0.55, 0.7], [0, 0.1], C) + interpolate(t, [1.12, 1.25], [0, 0.06], C))}} />
+        <Talk at={0} style={{scale: String(1 + interpolate(t, [0.55, 0.7], [0, 0.1], C) + interpolate(t, [1.12, 1.25], [0, 0.06], C))}} />
         <div style={{position: "absolute", left: 650, top: 300, width: 340, height: 470, background: "white", padding: "14px 14px 60px", rotate: "7deg",
           boxShadow: "0 24px 50px rgba(0,0,0,.45)", scale: String(interpolate(t, [0.5, 0.85], [0, 1], {...C, easing: pop}))}}>
           <Img src={staticFile("selfie.jpg")} style={{width: "100%", height: "100%", objectFit: "cover"}} />
@@ -78,12 +79,12 @@ export const ReelBaukasten: React.FC = () => {
           <div style={{position: "absolute", left: x - 5, top: 0, width: 10, height: H, background: "white", boxShadow: "0 0 25px rgba(0,0,0,.4)"}} />
           <div style={{position: "absolute", left: x - 45, top: 900, width: 90, height: 90, borderRadius: 45, background: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 40}}>⇆</div>
         </>); })()}
-        <Pip p={1} />
+        <Pip p={1} at={2.1} />
       </Sequence>
 
       {/* 3.4–4.6 results fan out behind her */}
       <Sequence from={sec(3.4)} durationInFrames={sec(1.2)} premountFor={fps}>
-        <Talk />
+        <Talk at={3.4} />
         {(() => {
           const ang0 = interpolate(t, [3.4, 4.6], [0, Math.PI * 0.9], C);
           const items = BK.map((src, k) => {
@@ -100,7 +101,7 @@ export const ReelBaukasten: React.FC = () => {
               <Img src={staticFile(o.src)} style={{width: "100%", height: "100%", objectFit: "cover"}} /></div>);
           return (<>
             {items.filter((o) => o.depth < 0).map(card)}
-            <Cut />
+            <Cut at={3.4} />
             {items.filter((o) => o.depth >= 0).map(card)}
           </>);
         })()}
@@ -108,10 +109,10 @@ export const ReelBaukasten: React.FC = () => {
 
       {/* 4.6–6.3 big TEXT behind her */}
       <Sequence from={sec(4.6)} durationInFrames={sec(1.7)} premountFor={fps}>
-        <Talk style={{scale: String(interpolate(t, [4.6, 6.3], [1.04, 1.1], C))}} />
+        <Talk at={4.6} style={{scale: String(interpolate(t, [4.6, 6.3], [1.04, 1.1], C))}} />
         <div style={{position: "absolute", width: W, top: 150, textAlign: "center", fontFamily: "PF", fontWeight: 700, fontSize: 420, color: "rgba(255,250,240,.96)",
           translate: interpolate(t, [4.7, 5.15], ["0px 320px", "0px 0px"], {...C, easing: out}), opacity: interpolate(t, [4.7, 4.95], [0, 1], C)}}>TEXT</div>
-        <Cut style={{scale: String(interpolate(t, [4.6, 6.3], [1.04, 1.1], C))}} />
+        <Cut at={4.6} style={{scale: String(interpolate(t, [4.6, 6.3], [1.04, 1.1], C))}} />
       </Sequence>
 
       {/* 6.3–8.3 Baukasten settings, she in circle */}
