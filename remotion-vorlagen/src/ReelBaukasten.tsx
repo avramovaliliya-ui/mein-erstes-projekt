@@ -72,9 +72,9 @@ export const ReelBaukasten: React.FC = () => {
       </Sequence>
 
       {/* 2.1–3.4 before/after slider */}
-      <Sequence from={sec(2.1)} durationInFrames={sec(1.3)} premountFor={fps}>
+      <Sequence from={sec(2.1)} durationInFrames={sec(1.8)} premountFor={fps}>
         <Img src={staticFile("bk_02.jpg")} style={full} />
-        {(() => { const x = interpolate(t, [2.25, 3.2], [W, 0], {...C, easing: out}); return (<>
+        {(() => { const x = interpolate(t, [2.45, 3.55], [W, 0], {...C, easing: Easing.inOut(Easing.cubic)}); return (<>
           <div style={{position: "absolute", left: 0, top: 0, width: x, height: H, overflow: "hidden"}}><Img src={staticFile("selfie.jpg")} style={{...full, objectPosition: "50% 30%"}} /></div>
           <div style={{position: "absolute", left: x - 5, top: 0, width: 10, height: H, background: "white", boxShadow: "0 0 25px rgba(0,0,0,.4)"}} />
           <div style={{position: "absolute", left: x - 45, top: 900, width: 90, height: 90, borderRadius: 45, background: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 40}}>⇆</div>
@@ -83,16 +83,16 @@ export const ReelBaukasten: React.FC = () => {
       </Sequence>
 
       {/* 3.4–4.6 results fan out behind her */}
-      <Sequence from={sec(3.4)} durationInFrames={sec(1.2)} premountFor={fps}>
-        <Talk at={3.4} />
+      <Sequence from={sec(3.9)} durationInFrames={sec(0.9)} premountFor={fps}>
+        <Talk at={3.9} />
         {(() => {
-          const ang0 = interpolate(t, [3.4, 4.6], [0, Math.PI * 0.9], C);
+          const ang0 = interpolate(t, [3.9, 4.8], [0, Math.PI * 0.8], C);
           const items = BK.map((src, k) => {
             const a = ang0 + (k / BK.length) * Math.PI * 2;
             const depth = Math.sin(a); // >0 front (below chin), <0 behind head
             const x = 540 + Math.cos(a) * 430, y = 420 + depth * 400;
             const sc = 0.78 + 0.32 * (depth + 1) / 2;
-            const appear = interpolate(t, [3.4 + k * 0.06, 3.65 + k * 0.06], [0, 1], {...C, easing: pop});
+            const appear = interpolate(t, [3.9 + k * 0.04, 4.1 + k * 0.04], [0, 1], {...C, easing: pop});
             return {src, k, depth, x, y, sc: sc * appear};
           });
           const card = (o: {src: string; k: number; x: number; y: number; sc: number}) => (
@@ -101,18 +101,18 @@ export const ReelBaukasten: React.FC = () => {
               <Img src={staticFile(o.src)} style={{width: "100%", height: "100%", objectFit: "cover"}} /></div>);
           return (<>
             {items.filter((o) => o.depth < 0).map(card)}
-            <Cut at={3.4} />
+            <Cut at={3.9} />
             {items.filter((o) => o.depth >= 0).map(card)}
           </>);
         })()}
       </Sequence>
 
       {/* 4.6–6.3 big TEXT behind her */}
-      <Sequence from={sec(4.6)} durationInFrames={sec(1.7)} premountFor={fps}>
-        <Talk at={4.6} style={{scale: String(interpolate(t, [4.6, 6.3], [1.04, 1.1], C))}} />
+      <Sequence from={sec(4.8)} durationInFrames={sec(1.5)} premountFor={fps}>
+        <Talk at={4.8} style={{scale: String(interpolate(t, [4.8, 6.3], [1.04, 1.1], C))}} />
         <div style={{position: "absolute", width: W, top: 150, textAlign: "center", fontFamily: "PF", fontWeight: 700, fontSize: 420, color: "rgba(255,250,240,.96)",
-          translate: interpolate(t, [4.7, 5.15], ["0px 320px", "0px 0px"], {...C, easing: out}), opacity: interpolate(t, [4.7, 4.95], [0, 1], C)}}>TEXT</div>
-        <Cut at={4.6} style={{scale: String(interpolate(t, [4.6, 6.3], [1.04, 1.1], C))}} />
+          translate: interpolate(t, [4.85, 5.25], ["0px 320px", "0px 0px"], {...C, easing: out}), opacity: interpolate(t, [4.85, 5.05], [0, 1], C)}}>TEXT</div>
+        <Cut at={4.8} style={{scale: String(interpolate(t, [4.8, 6.3], [1.04, 1.1], C))}} />
       </Sequence>
 
       {/* 6.3–8.3 Baukasten settings, she in circle */}
