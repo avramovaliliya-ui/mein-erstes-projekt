@@ -45,7 +45,7 @@ const Captions: React.FC<{t: number; top: number}> = ({t, top}) => {
 const Pip: React.FC<{p: number}> = ({p}) => p <= 0 ? null : (
   <div style={{position: "absolute", left: 790 - 0, top: 1240, width: 250, height: 250, borderRadius: 140, overflow: "hidden", border: `7px solid ${GOLD}`,
     boxShadow: "0 18px 40px rgba(0,0,0,.45)", scale: String(p), opacity: Math.min(1, p * 2)}}>
-    <OffthreadVideo src={staticFile("talk.mp4")} style={{width: 250, height: 444, objectFit: "cover", marginTop: -62}} muted />
+    <OffthreadVideo src={staticFile("talk.mp4")} style={{position: "absolute", width: 340, height: 604, left: -40, top: -2, maxWidth: "none"}} muted />
   </div>
 );
 
@@ -84,14 +84,26 @@ export const ReelBaukasten: React.FC = () => {
       {/* 3.4–4.6 results fan out behind her */}
       <Sequence from={sec(3.4)} durationInFrames={sec(1.2)} premountFor={fps}>
         <Talk />
-        {BK.map((s, k) => {
-          const t0 = 3.4 + k * 0.1;
-          return <div key={k} style={{position: "absolute", left: 700, top: 330, width: 290, height: 480, border: "10px solid white", borderRadius: 14, overflow: "hidden",
-            transformOrigin: "50% 140%", rotate: `${(k - 2) * 12 * interpolate(t, [3.9, 4.3], [0, 1], {...C, easing: out})}deg`,
-            translate: interpolate(t, [t0, t0 + 0.3], ["0px -900px", "0px 0px"], {...C, easing: out}), boxShadow: "0 20px 40px rgba(0,0,0,.4)"}}>
-            <Img src={staticFile(s)} style={{width: "100%", height: "100%", objectFit: "cover"}} /></div>;
-        })}
-        <Cut />
+        {(() => {
+          const ang0 = interpolate(t, [3.4, 4.6], [0, Math.PI * 0.9], C);
+          const items = BK.map((src, k) => {
+            const a = ang0 + (k / BK.length) * Math.PI * 2;
+            const depth = Math.sin(a); // >0 front (below chin), <0 behind head
+            const x = 540 + Math.cos(a) * 430, y = 420 + depth * 400;
+            const sc = 0.78 + 0.32 * (depth + 1) / 2;
+            const appear = interpolate(t, [3.4 + k * 0.06, 3.65 + k * 0.06], [0, 1], {...C, easing: pop});
+            return {src, k, depth, x, y, sc: sc * appear};
+          });
+          const card = (o: {src: string; k: number; x: number; y: number; sc: number}) => (
+            <div key={o.k} style={{position: "absolute", left: o.x - 100, top: o.y - 135, width: 200, height: 270, border: "8px solid white", borderRadius: 14, overflow: "hidden",
+              boxShadow: "0 16px 34px rgba(0,0,0,.4)", scale: String(o.sc)}}>
+              <Img src={staticFile(o.src)} style={{width: "100%", height: "100%", objectFit: "cover"}} /></div>);
+          return (<>
+            {items.filter((o) => o.depth < 0).map(card)}
+            <Cut />
+            {items.filter((o) => o.depth >= 0).map(card)}
+          </>);
+        })()}
       </Sequence>
 
       {/* 4.6–6.3 big TEXT behind her */}
@@ -154,7 +166,7 @@ export const ReelBaukasten: React.FC = () => {
 
       {/* 13– CTA */}
       <Sequence from={sec(CTA_AT)} premountFor={fps}>
-        <OffthreadVideo src={staticFile("cta.mp4")} style={full} />
+        <OffthreadVideo src={staticFile("cta.mp4")} style={full} volume={1.9} />
         {(() => {
           const s = interpolate(t, [13.3, 13.6], [0, 1], {...C, easing: pop});
           return (<div style={{position: "absolute", left: 90, top: 1350, width: 560, padding: "22px 30px", borderRadius: 30, background: "white", boxShadow: "0 18px 40px rgba(0,0,0,.35)",
