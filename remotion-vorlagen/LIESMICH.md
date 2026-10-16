@@ -5,5 +5,6 @@ Hier liegt nur der Code. Bilder (public/) und Schriften werden beim Bauen einges
 
 - `Folie1.tsx` – Karussell-Folie: großes Wort hinter dem Kopf, Lupen-Kärtchen (Auge, Lippen, Haut), Schreibmaschinen-Text
 - `Katalog.tsx` – 8 Effekte: Wort-für-Wort-Untertitel, Vorher/Nachher-Schieber, Fotokarten fächern, Wörter knallen rein, Zoom durchs Auge, Kreis & Pfeil zeichnen, Zahl zählt hoch, Chat-Blasen
+- `Story.tsx` – 10 Story-Effekte (9:16): Emoji-Regen, Umfrage-Look, Doppelbelichtung, Ich & KI-Ich, 3D-Tiefe, 3D-Kippen, Wisch-Übergang, Vertigo-Zoom, Textmarker, Countdown
 
 Bauen: `npm i` → Bilder in `public/` legen → `npx remotion render src/index.ts <Name> out.mp4`
