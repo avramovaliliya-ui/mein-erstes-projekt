@@ -53,11 +53,12 @@ export const Loslassen: React.FC = () => {
       {/* ANGST as particles: solid at first, then blown away as dust */}
       <svg width={W} height={H} style={{position: "absolute"}}>
         {P.map(([px, py], k) => {
-          const delay = crumbleStart + ((px + 310) / 620) * 26 + random("d" + k) * 8;
+          const delay = crumbleStart + ((px + 310) / 620) * 26 + random("d" + k) * 2;
+          if (f < delay) return null;
           const d = interpolate(f, [delay, delay + 40], [0, 1], {...C, easing: Easing.in(Easing.quad)});
           if (d >= 1) return null;
           const x = wx + px + d * (160 + random("vx" + k) * 260), y = wy + py - d * (60 + random("vy" + k) * 260) + Math.sin(f / 4 + k) * 6 * d;
-          return <rect key={k} x={x - 2.6} y={y - 2.6} width={5.2 - 3 * d} height={5.2 - 3 * d} fill={d > 0 ? "#cfc7bd" : "#3a3330"} opacity={show * (1 - d)} />;
+          return <rect key={k} x={x - 1.8} y={y - 1.8} width={3.6 - 1.6 * d} height={3.6 - 1.6 * d} fill={d < 0.3 ? "#2e2622" : "#8a7f76"} opacity={1 - d} />;
         })}
         {new Array(10).fill(0).map((_, k) => {
           if (f < 128 + k * 4) return null;
@@ -68,6 +69,9 @@ export const Loslassen: React.FC = () => {
         })}
       </svg>
 
+      {(() => { const cut = interpolate(f, [crumbleStart, crumbleStart + 26], [0, 100], C);
+        return <Img src={staticFile("angst.png")} style={{position: "absolute", left: wx - 310, top: wy - 110, width: 620, height: 220, opacity: show,
+          scale: String(0.85 + 0.15 * show), clipPath: `inset(0 0 0 ${cut}%)`}} />; })()}
       {/* hook (bottom free area, never over her face) */}
       {line("WAS HÄLTST DU", true, 1290, hookO)}
       {line("IMMER NOCH FEST…", true, 1366, hookO)}
