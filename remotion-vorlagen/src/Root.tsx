@@ -9,6 +9,7 @@ import {Buchstaben} from "./Buchstaben";
 import {Schwarm} from "./Schwarm";
 import {Magie} from "./Magie";
 import {HandWord} from "./HandWord";
+import {Loslassen} from "./Loslassen";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -20,6 +21,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="Schwarm" component={Schwarm} durationInFrames={630} fps={30} width={1080} height={1920} />
     <Composition id="Magie" component={Magie} durationInFrames={525} fps={30} width={1080} height={1920} />
     <Composition id="HandWord" component={HandWord} durationInFrames={150} fps={30} width={1080} height={1920} />
+    <Composition id="Loslassen" component={Loslassen} durationInFrames={285} fps={30} width={1080} height={1920} />
     <Composition id="Story"component={Story} durationInFrames={10 * 96} fps={30} width={1080} height={1920} />
   </>
 );
