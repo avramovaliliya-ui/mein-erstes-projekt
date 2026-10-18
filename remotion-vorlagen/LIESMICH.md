@@ -14,5 +14,6 @@ Hier liegt nur der Code. Bilder (public/) und Schriften werden beim Bauen einges
 - `Reaktion.tsx` – Reaktions-Format: oben Schnitt-Chaos / Chat / Effekt, unten sie redend; Effekte über den ganzen Bildschirm (public: kueche.mp4, reel2.mp4, muster.mp4)
 - `Scroll.tsx` – „Gesicht oben, Handy scrollt“: kleine Karte mit ihr oben, Schritt-Wort, Handy mit Claude-Chat (Upload → Satz → „Mach ich.“ → Video), Ergebnis gross
 - `Serie.tsx` – Serien-Muster „Kann Claude diesen Effekt nachbauen?“ nach ihren Vorbildern: sie redet vollformatig, Pille oben, „claude“ hinter dem Kopf (cut/), schräge schwebende Karten, Chat-Zeile, Untertitel klein + Schlüsselwort riesig gold, ROH/FERTIG-Karten
+- `Serie2.tsx` – Folge 01 „OHNE KAMERA“, Effekte 1:1 nach ihren zwei Vorbildern (Kreator: Creme-Box, claude hinter Kopf, Handy-Karten, Chat-Feld, REC/FINAL EDIT, Video-Wand, Kommentar→Antwort; Anastasia: Hook-Collage mit Herzen, Wörter um den Kopf, FOLGE 01 + Profil-Karte, „kommentiere“, nächste Folge). Falsch gesprochene Namen über tts4.wav
 
 Bauen: `npm i` → Bilder in `public/` legen → `npx remotion render src/index.ts <Name> out.mp4`
