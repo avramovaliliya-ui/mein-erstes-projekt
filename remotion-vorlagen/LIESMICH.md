@@ -8,5 +8,7 @@ Hier liegt nur der Code. Bilder (public/) und Schriften werden beim Bauen einges
 - `Story.tsx` – 10 Story-Effekte (9:16): Emoji-Regen, Umfrage-Look, Doppelbelichtung, Ich & KI-Ich, 3D-Tiefe, 3D-Kippen, Wisch-Übergang, Vertigo-Zoom, Textmarker, Countdown
 - `EffektMuster.tsx` – 3 Effekte mit Ausschnitt (cutout.png): Wort hinter dir, Buchstaben kreisen um dich (vorne/hinten), Aus dem Bild treten. Schriften als woff2 in public/ (pop600, pop900, pf700i)
 - `KuecheReel.tsx` – fertiges 30-s-Reel auf Originalvideo (in.mp4): Hook, CapCut hinter ihr durchgestrichen, Zähler 20 Minuten, Chat-Blase, Ring aus Text, aus dem Handy steigen, Sticker-Ausschnitt mit Katze, Kommentar-Blase, Karaoke-Untertitel (kueche-words.json). Ausschnitte als public/cut/cNNNN.png (rembg pro Videobild)
+- `Ring3D.tsx` – echter 3D-Text-Zylinder (3 Reihen, vorne/hinten getrennt für den Ausschnitt)
+- `Reel2.tsx` – Küchen-Reel v2: sie redet ungestört, Effekte als Einschübe (Chat, 3D-Ring, aus dem Handy, Untertitel, Sticker, Kommentar). Falsche Wörter durch ElevenLabs-Stimme „Liliya DE“ ersetzt (public/tts4.wav), immer unter einem Einschub
 
 Bauen: `npm i` → Bilder in `public/` legen → `npx remotion render src/index.ts <Name> out.mp4`
