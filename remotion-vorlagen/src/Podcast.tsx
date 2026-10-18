@@ -9,6 +9,7 @@ const fontFace = `
 @font-face{font-family:'PF';src:url('${staticFile("pf600.woff2")}') format('woff2');font-weight:600}
 @font-face{font-family:'Pop';src:url('${staticFile("pop600.woff2")}') format('woff2');font-weight:600}`;
 const f = (s: number) => Math.round(s * FPS);
+const WERBUNG = true; // Post führt zu einem bezahlten Kurs (Affiliate)
 
 // [Datei, von, bis, Zoom]
 type Seg = {src: string; a: number; b: number; zoom: number};
@@ -66,7 +67,7 @@ const Captions: React.FC<{zoom: number}> = ({zoom}) => {
 };
 
 const Badge = () => <div style={{position: "absolute", left: 40, top: 1856, fontFamily: "Pop", fontWeight: 600, fontSize: 22, letterSpacing: 2,
-  color: "white", textShadow: "0 1px 4px rgba(0,0,0,.7)"}}>KI-GENERIERT</div>;
+  color: "white", textShadow: "0 1px 4px rgba(0,0,0,.7)"}}>{WERBUNG ? "KI-GENERIERT | WERBUNG" : "KI-GENERIERT"}</div>;
 
 export const Podcast: React.FC = () => {
   const fr = useCurrentFrame();
