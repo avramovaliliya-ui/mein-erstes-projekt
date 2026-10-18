@@ -1,19 +1,23 @@
 import React from "react";
 import {AbsoluteFill, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame} from "remotion";
 
-// Podcast-Reel aus zwei 10-s-Clips: ihr Sprechen unverändert (nur Stille am Anfang/Ende weg),
-// zwei sanfte Zooms, Karaoke-Untertitel nach ihrem Podcast-Stil (Serif weiss, kommend grau, max. 4 Wörter).
+// Podcast-Reel aus zwei 10-s-Clips: Stillstände rausgeschnitten, glattes Durchsprechen.
+// Jeder Schnitt wechselt leicht zwischen weit (1.0) und nah (1.04), damit kein Sprung sichtbar ist.
+// Karaoke-Untertitel nach ihrem Podcast-Stil (Serif weiss, kommend grau, max. 4 Wörter).
 const W = 1080, H = 1920, FPS = 30;
 const fontFace = `
 @font-face{font-family:'PF';src:url('${staticFile("pf600.woff2")}') format('woff2');font-weight:600}
 @font-face{font-family:'Pop';src:url('${staticFile("pop600.woff2")}') format('woff2');font-weight:600}`;
 const f = (s: number) => Math.round(s * FPS);
 
-// [Datei, von, bis, sanfter Zoom ab Sekunde (Quellzeit)]
-type Seg = {src: string; a: number; b: number; zoomFrom?: number};
+// [Datei, von, bis, Zoom]
+type Seg = {src: string; a: number; b: number; zoom: number};
 const SEGS: Seg[] = [
-  {src: "p1.mp4", a: 0.75, b: 7.35, zoomFrom: 5.3},
-  {src: "p2.mp4", a: 0.75, b: 7.7, zoomFrom: 5.0},
+  {src: "p1.mp4", a: 1.0, b: 2.5, zoom: 1},
+  {src: "p1.mp4", a: 3.42, b: 4.73, zoom: 1.04},
+  {src: "p1.mp4", a: 5.42, b: 7.2, zoom: 1},
+  {src: "p2.mp4", a: 0.92, b: 4.78, zoom: 1.04},
+  {src: "p2.mp4", a: 5.08, b: 7.55, zoom: 1},
 ];
 let acc = 0;
 const TL = SEGS.map((s) => { const r = {...s, at: acc}; acc += s.b - s.a; return r; });
@@ -64,22 +68,17 @@ const Captions: React.FC<{zoom: number}> = ({zoom}) => {
 const Badge = () => <div style={{position: "absolute", left: 40, top: 1856, fontFamily: "Pop", fontWeight: 600, fontSize: 22, letterSpacing: 2,
   color: "white", textShadow: "0 1px 4px rgba(0,0,0,.7)"}}>KI-GENERIERT</div>;
 
-// sanfter Zoom 1.0 → 1.045 ab zoomFrom bis Ende der Einstellung
-const zoomAt = (s: (typeof TL)[number], t: number) =>
-  s.zoomFrom === undefined ? 1 : interpolate(t, [s.zoomFrom - s.a + s.at, s.b - s.a + s.at], [1, 1.045], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-
 export const Podcast: React.FC = () => {
   const fr = useCurrentFrame();
   const cur = TL.find((s) => fr >= f(s.at) && fr < f(s.at + s.b - s.a)) ?? TL[TL.length - 1];
-  const z = zoomAt(cur, fr / FPS);
   return <AbsoluteFill style={{background: "black"}}>
     <style>{fontFace}</style>
     {TL.map((s, i) => (
       <Sequence key={i} from={f(s.at)} durationInFrames={f(s.at + s.b - s.a) - f(s.at)}>
-        <OffthreadVideo src={staticFile(s.src)} startFrom={f(s.a)} style={{position: "absolute", width: W, height: H, scale: String(zoomAt(s, fr / FPS)), transformOrigin: "520px 620px"}} />
+        <OffthreadVideo src={staticFile(s.src)} startFrom={f(s.a)} volume={(v) => Math.min(1, (v + 1) / 3, (f(s.b - s.a) - v) / 3)} style={{position: "absolute", width: W, height: H, scale: String(s.zoom), transformOrigin: "520px 620px"}} />
       </Sequence>
     ))}
-    <Captions zoom={z} />
+    <Captions zoom={cur.zoom} />
     <Badge />
   </AbsoluteFill>;
 };
