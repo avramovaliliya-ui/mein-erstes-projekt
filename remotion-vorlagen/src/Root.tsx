@@ -13,6 +13,7 @@ import {Loslassen} from "./Loslassen";
 import {Puffy} from "./Puffy";
 import {Brennen} from "./Brennen";
 import {EffektMuster} from "./EffektMuster";
+import {KuecheReel} from "./KuecheReel";
 import {StoryB1, StoryB2, StoryB3, StoryB4} from "./StoryBaukasten";
 
 export const RemotionRoot: React.FC = () => (
@@ -33,6 +34,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="StoryB3" component={StoryB3} durationInFrames={210} fps={30} width={1080} height={1920} />
     <Composition id="StoryB4" component={StoryB4} durationInFrames={210} fps={30} width={1080} height={1920} />
     <Composition id="EffektMuster" component={EffektMuster} durationInFrames={360} fps={30} width={1080} height={1920} />
+    <Composition id="KuecheReel" component={KuecheReel} durationInFrames={721} fps={24} width={1080} height={1920} />
     <Composition id="Story"component={Story} durationInFrames={10 * 96} fps={30} width={1080} height={1920} />
   </>
 );
