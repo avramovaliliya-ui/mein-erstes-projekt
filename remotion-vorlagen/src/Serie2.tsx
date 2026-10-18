@@ -226,7 +226,7 @@ export const Serie2: React.FC = () => (
   <AbsoluteFill style={{background: "black"}}>
     <style>{fontFace}</style>
     {TL.map((s, i) => { const Z = SZ[s.scene]; return <Sequence key={i} from={f(s.at)} durationInFrames={f(s.at + s.b - s.a) - f(s.at)}>
-      <Z s={s} />{s.tts && <Audio src={staticFile("tts4.wav")} startFrom={f(s.tts[0])} volume={1.15} />}</Sequence>; })}
+      <Z s={s} />{s.tts && <Audio src={staticFile("tts4.wav")} startFrom={f(s.tts[0])} endAt={f(s.tts[1])} volume={1.15} />}</Sequence>; })}
     <div style={{position: "absolute", left: 40, top: 1856, fontFamily: "Pop", fontWeight: 600, fontSize: 22, letterSpacing: 2, color: "white", textShadow: "0 1px 4px rgba(0,0,0,.8)"}}>KI-GENERIERT</div>
   </AbsoluteFill>
 );
