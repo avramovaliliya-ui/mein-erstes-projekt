@@ -13,5 +13,6 @@ Hier liegt nur der Code. Bilder (public/) und Schriften werden beim Bauen einges
 - `Podcast.tsx` – Podcast-Vorlage nach ihrer Regel vom 18.10.: NUR Untertitel (Playfair 600 weiss, kommend grau, max. 4 Wörter, gleichmässig verteilt, unter dem Kinn/über dem Anhänger), Stillstände raus (glattes Durchsprechen), jeder Schnitt wechselt leicht 1,0 ↔ 1,04, „KI-GENERIERT“ klein unten links
 - `Reaktion.tsx` – Reaktions-Format: oben Schnitt-Chaos / Chat / Effekt, unten sie redend; Effekte über den ganzen Bildschirm (public: kueche.mp4, reel2.mp4, muster.mp4)
 - `Scroll.tsx` – „Gesicht oben, Handy scrollt“: kleine Karte mit ihr oben, Schritt-Wort, Handy mit Claude-Chat (Upload → Satz → „Mach ich.“ → Video), Ergebnis gross
+- `Serie.tsx` – Serien-Muster „Kann Claude diesen Effekt nachbauen?“ nach ihren Vorbildern: sie redet vollformatig, Pille oben, „claude“ hinter dem Kopf (cut/), schräge schwebende Karten, Chat-Zeile, Untertitel klein + Schlüsselwort riesig gold, ROH/FERTIG-Karten
 
 Bauen: `npm i` → Bilder in `public/` legen → `npx remotion render src/index.ts <Name> out.mp4`
