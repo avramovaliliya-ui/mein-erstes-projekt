@@ -4,7 +4,7 @@ import {AbsoluteFill, Easing, Img, interpolate, OffthreadVideo, random, Sequence
 // Reel "3 Sätze, die ich mir anhören musste" – 3 Seedance clips + hook, sentence cards, end card.
 // Each sentence card is destroyed the same way she destroys hers: crumpled away, burnt, wiped off.
 // public/: s1.mp4 (zerknüllen), s2.mp4 (verbrennen), s3.mp4 (wegwischen), s3_last.jpg (last frame of s3),
-// nachher.mp4 (finished clip 2 cut from a first render, for the before/after slider), seite.jpg (full-page screenshot of the prompt page),
+// seite.jpg (full-page screenshot of the prompt page),
 // fonts pf600.woff2, pf600i.woff2 (Playfair Display), lato400.woff2, lato700.woff2
 const PF = "PF", LATO = "LT";
 const face = (fam: string, file: string, w: number, style = "normal") =>
@@ -17,12 +17,12 @@ const out = Easing.bezier(0.16, 1, 0.3, 1), pop = Easing.bezier(0.34, 1.56, 0.64
 const full: React.CSSProperties = {position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover"};
 
 // clip lengths in frames (30 fps): 4.06 s, 5.06 s, 4.06 s, then end card
-// end: card (75) → before/after slider (90) → 3D phone with the prompt page (105)
-const L1 = 122, L2 = 152, L3 = 122, CARD = 75, SLIDE = 90, PHONE = 105, END = CARD + SLIDE + PHONE;
+// end: card (75) → 3D phone with the prompt page (105)
+const L1 = 122, L2 = 152, L3 = 122, CARD = 75, PHONE = 105, END = CARD + PHONE;
 const S2 = L1, S3 = L1 + L2, E0 = L1 + L2 + L3;
 export const DREI_DURATION = E0 + END;
-const B0 = E0 + CARD, P0 = B0 + SLIDE;
-const CUTS = [S2, S3, E0, B0, P0];
+const P0 = E0 + CARD;
+const CUTS = [S2, S3, E0, P0];
 
 const Box: React.FC<{children: React.ReactNode; style?: React.CSSProperties}> = ({children, style}) => (
   <div style={{background: CREME, borderRadius: 28, padding: "22px 30px 26px", textAlign: "center", textWrap: "balance", boxShadow: "0 10px 40px rgba(0,0,0,.28)", ...style}}>{children}</div>
@@ -124,29 +124,7 @@ const Burst: React.FC<{f: number; at: number; x: number; y: number}> = ({f, at, 
   })}</svg>;
 };
 
-const Pill: React.FC<{text: string; style: React.CSSProperties}> = ({text, style}) => (
-  <div style={{position: "absolute", padding: "10px 22px", borderRadius: 30, background: CREME, color: ROST, fontFamily: LATO, fontWeight: 700, fontSize: 30, letterSpacing: 6, boxShadow: "0 6px 20px rgba(0,0,0,.25)", ...style}}>{text}</div>
-);
-
-// behind the scenes 1: raw Seedance clip vs. finished clip, divider sweeps right → left
-const BeforeAfter: React.FC = () => {
-  const t = useCurrentFrame();
-  const x = interpolate(t, [12, 72], [990, 90], {...C, easing: Easing.inOut(Easing.cubic)});
-  const lab = interpolate(t, [0, 10], [0, 1], {...C, easing: pop});
-  return (
-    <AbsoluteFill>
-      <OffthreadVideo src={staticFile("nachher.mp4")} startFrom={45} style={full} muted />
-      <div style={{position: "absolute", inset: 0, clipPath: `inset(0 ${W - x}px 0 0)`}}><OffthreadVideo src={staticFile("s2.mp4")} startFrom={45} style={full} muted /></div>
-      <div style={{position: "absolute", left: x - 3, top: 0, width: 6, height: H, background: "white", boxShadow: "0 0 18px rgba(0,0,0,.35)"}} />
-      <div style={{position: "absolute", left: x - 42, top: 918, width: 84, height: 84, borderRadius: 42, background: "white", display: "flex", alignItems: "center", justifyContent: "center",
-        fontFamily: LATO, fontWeight: 700, fontSize: 36, color: ROST, boxShadow: "0 6px 20px rgba(0,0,0,.3)"}}>‹ ›</div>
-      <Pill text="VORHER" style={{left: 110, top: 1170, scale: String(lab), opacity: interpolate(x, [200, 330], [0, 1], C)}} />
-      <Pill text="NACHHER" style={{right: 1080 - 810, top: 1170, scale: String(lab)}} />
-    </AbsoluteFill>
-  );
-};
-
-// behind the scenes 2: floating 3D phone, the prompt page scrolls on it
+// behind the scenes: floating 3D phone, the prompt page scrolls on it
 const PhoneScene: React.FC = () => {
   const t = useCurrentFrame();
   const enter = interpolate(t, [0, 20], [1300, 0], {...C, easing: out});
@@ -220,7 +198,6 @@ export const DreiSaetze: React.FC = () => {
         </>;
       })()}
 
-      <Sequence from={B0} durationInFrames={SLIDE}><BeforeAfter /></Sequence>
       <Sequence from={P0} durationInFrames={PHONE}><PhoneScene /></Sequence>
 
       <AbsoluteFill style={{background: "white", opacity: flash}} />
