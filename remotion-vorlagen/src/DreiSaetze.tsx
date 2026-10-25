@@ -145,7 +145,8 @@ const PhoneScene: React.FC = () => {
       </div>
       <Row top={270} style={{opacity: Math.min(1, head * 1.5), scale: String(0.8 + 0.2 * head)}}>
         <Box style={{padding: "16px 30px 20px"}}>
-          <div style={{fontFamily: PF, fontWeight: 600, fontSize: 48, color: INK}}>Gebaut mit <span style={{fontStyle: "italic", color: ROST}}>Claude</span> ✨</div>
+          <div style={{fontFamily: LATO, fontWeight: 400, fontSize: 30, color: INK}}>Clips: Seedance 2.5 in Higgsfield</div>
+          <div style={{fontFamily: PF, fontWeight: 600, fontSize: 46, color: INK, marginTop: 4}}>Schnitt & Effekte: <span style={{fontStyle: "italic", color: ROST}}>Claude</span> ✨</div>
         </Box>
       </Row>
     </AbsoluteFill>
