@@ -4,6 +4,7 @@ import {AbsoluteFill, Easing, Img, interpolate, OffthreadVideo, random, Sequence
 // Reel "3 Sätze, die ich mir anhören musste" – 3 Seedance clips + hook, sentence cards, end card.
 // Each sentence card is destroyed the same way she destroys hers: crumpled away, burnt, wiped off.
 // public/: s1.mp4 (zerknüllen), s2.mp4 (verbrennen), s3.mp4 (wegwischen), s3_last.jpg (last frame of s3),
+// nachher.mp4 (finished clip 2 cut from a first render, for the before/after slider), seite.jpg (full-page screenshot of the prompt page),
 // fonts pf600.woff2, pf600i.woff2 (Playfair Display), lato400.woff2, lato700.woff2
 const PF = "PF", LATO = "LT";
 const face = (fam: string, file: string, w: number, style = "normal") =>
@@ -16,10 +17,12 @@ const out = Easing.bezier(0.16, 1, 0.3, 1), pop = Easing.bezier(0.34, 1.56, 0.64
 const full: React.CSSProperties = {position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover"};
 
 // clip lengths in frames (30 fps): 4.06 s, 5.06 s, 4.06 s, then end card
-const L1 = 122, L2 = 152, L3 = 122, END = 120;
+// end: card (75) → before/after slider (90) → 3D phone with the prompt page (105)
+const L1 = 122, L2 = 152, L3 = 122, CARD = 75, SLIDE = 90, PHONE = 105, END = CARD + SLIDE + PHONE;
 const S2 = L1, S3 = L1 + L2, E0 = L1 + L2 + L3;
 export const DREI_DURATION = E0 + END;
-const CUTS = [S2, S3, E0];
+const B0 = E0 + CARD, P0 = B0 + SLIDE;
+const CUTS = [S2, S3, E0, B0, P0];
 
 const Box: React.FC<{children: React.ReactNode; style?: React.CSSProperties}> = ({children, style}) => (
   <div style={{background: CREME, borderRadius: 28, padding: "22px 30px 26px", textAlign: "center", textWrap: "balance", boxShadow: "0 10px 40px rgba(0,0,0,.28)", ...style}}>{children}</div>
@@ -121,6 +124,56 @@ const Burst: React.FC<{f: number; at: number; x: number; y: number}> = ({f, at, 
   })}</svg>;
 };
 
+const Pill: React.FC<{text: string; style: React.CSSProperties}> = ({text, style}) => (
+  <div style={{position: "absolute", padding: "10px 22px", borderRadius: 30, background: CREME, color: ROST, fontFamily: LATO, fontWeight: 700, fontSize: 30, letterSpacing: 6, boxShadow: "0 6px 20px rgba(0,0,0,.25)", ...style}}>{text}</div>
+);
+
+// behind the scenes 1: raw Seedance clip vs. finished clip, divider sweeps right → left
+const BeforeAfter: React.FC = () => {
+  const t = useCurrentFrame();
+  const x = interpolate(t, [12, 72], [990, 90], {...C, easing: Easing.inOut(Easing.cubic)});
+  const lab = interpolate(t, [0, 10], [0, 1], {...C, easing: pop});
+  return (
+    <AbsoluteFill>
+      <OffthreadVideo src={staticFile("nachher.mp4")} startFrom={45} style={full} muted />
+      <div style={{position: "absolute", inset: 0, clipPath: `inset(0 ${W - x}px 0 0)`}}><OffthreadVideo src={staticFile("s2.mp4")} startFrom={45} style={full} muted /></div>
+      <div style={{position: "absolute", left: x - 3, top: 0, width: 6, height: H, background: "white", boxShadow: "0 0 18px rgba(0,0,0,.35)"}} />
+      <div style={{position: "absolute", left: x - 42, top: 918, width: 84, height: 84, borderRadius: 42, background: "white", display: "flex", alignItems: "center", justifyContent: "center",
+        fontFamily: LATO, fontWeight: 700, fontSize: 36, color: ROST, boxShadow: "0 6px 20px rgba(0,0,0,.3)"}}>‹ ›</div>
+      <Pill text="VORHER" style={{left: 110, top: 1170, scale: String(lab), opacity: interpolate(x, [200, 330], [0, 1], C)}} />
+      <Pill text="NACHHER" style={{right: 1080 - 810, top: 1170, scale: String(lab)}} />
+    </AbsoluteFill>
+  );
+};
+
+// behind the scenes 2: floating 3D phone, the prompt page scrolls on it
+const PhoneScene: React.FC = () => {
+  const t = useCurrentFrame();
+  const enter = interpolate(t, [0, 20], [1300, 0], {...C, easing: out});
+  const ry = interpolate(t, [0, PHONE], [-24, 14]);
+  const fl = Math.sin(t / 12) * 12;
+  const scroll = interpolate(t, [24, 95], [0, -2900], {...C, easing: Easing.inOut(Easing.quad)});
+  const head = interpolate(t, [10, 22], [0, 1], {...C, easing: pop});
+  return (
+    <AbsoluteFill style={{perspective: 1600}}>
+      <Img src={staticFile("s3_last.jpg")} style={{...full, filter: "blur(24px)", scale: "1.1"}} />
+      <div style={{position: "absolute", left: 320, top: 470, width: 440, height: 900, borderRadius: 66, background: "#111", padding: 16, boxShadow: "0 50px 80px rgba(0,0,0,.4)",
+        transform: `translateY(${enter + fl}px) rotateY(${ry}deg) rotateX(6deg)`}}>
+        <div style={{position: "relative", width: 408, height: 868, borderRadius: 52, overflow: "hidden", background: CREME}}>
+          <Img src={staticFile("seite.jpg")} style={{position: "absolute", left: 0, top: 0, width: 408, translate: `0 ${scroll}px`}} />
+          <div style={{position: "absolute", left: 144, top: 14, width: 120, height: 34, borderRadius: 17, background: "#111"}} />
+          <div style={{position: "absolute", inset: 0, background: `linear-gradient(${110 + ry}deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.25) 45%, rgba(255,255,255,0) 60%)`}} />
+        </div>
+      </div>
+      <Row top={270} style={{opacity: Math.min(1, head * 1.5), scale: String(0.8 + 0.2 * head)}}>
+        <Box style={{padding: "16px 30px 20px"}}>
+          <div style={{fontFamily: PF, fontWeight: 600, fontSize: 48, color: INK}}>Gebaut mit <span style={{fontStyle: "italic", color: ROST}}>Claude</span> ✨</div>
+        </Box>
+      </Row>
+    </AbsoluteFill>
+  );
+};
+
 export const DreiSaetze: React.FC = () => {
   const f = useCurrentFrame();
   const e = f - E0;
@@ -139,7 +192,7 @@ export const DreiSaetze: React.FC = () => {
         <Sequence durationInFrames={L1}><OffthreadVideo src={staticFile("s1.mp4")} style={full} /></Sequence>
         <Sequence from={S2} durationInFrames={L2}><OffthreadVideo src={staticFile("s2.mp4")} style={full} /></Sequence>
         <Sequence from={S3} durationInFrames={L3}><OffthreadVideo src={staticFile("s3.mp4")} style={full} /></Sequence>
-        {e >= 0 && <Img src={staticFile("s3_last.jpg")} style={{...full, scale: String(1 + e * 0.0009)}} />}
+        {e >= 0 && e < CARD && <Img src={staticFile("s3_last.jpg")} style={{...full, scale: String(1 + e * 0.0009)}} />}
       </AbsoluteFill>
       <AbsoluteFill style={{background: "radial-gradient(ellipse at 50% 30%, rgba(255,140,40,.35), transparent 60%)", mixBlendMode: "screen", opacity: fire}} />
 
@@ -151,7 +204,7 @@ export const DreiSaetze: React.FC = () => {
       <Satz f={f} n={3} text="KI sieht bei dir eh fake aus." from={S3 + 2} kill={S3 + 62} fx="wipe" />
 
       {/* end card: lines rise in, "Geglaubt nicht mehr." gets underlined */}
-      {e >= 0 && (() => {
+      {e >= 0 && e < CARD && (() => {
         const a = interpolate(e, [4, 16], [0, 1], {...C, easing: out}), b = interpolate(e, [20, 32], [0, 1], {...C, easing: out});
         const u = interpolate(e, [32, 46], [0, 1], {...C, easing: out});
         return <>
@@ -166,6 +219,9 @@ export const DreiSaetze: React.FC = () => {
           </Row>
         </>;
       })()}
+
+      <Sequence from={B0} durationInFrames={SLIDE}><BeforeAfter /></Sequence>
+      <Sequence from={P0} durationInFrames={PHONE}><PhoneScene /></Sequence>
 
       <AbsoluteFill style={{background: "white", opacity: flash}} />
       <div style={{position: "absolute", left: 60, top: 1830, color: "white", fontFamily: LATO, fontWeight: 700, fontSize: 24, letterSpacing: 3, textShadow: "0 1px 4px rgba(0,0,0,.6)"}}>KI-GENERIERT</div>
