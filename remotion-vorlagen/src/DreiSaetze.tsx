@@ -22,10 +22,10 @@ export const DREI_DURATION = E0 + END;
 const CUTS = [S2, S3, E0];
 
 const Box: React.FC<{children: React.ReactNode; style?: React.CSSProperties}> = ({children, style}) => (
-  <div style={{background: CREME, borderRadius: 28, padding: "26px 40px 30px", textAlign: "center", textWrap: "balance", boxShadow: "0 10px 40px rgba(0,0,0,.28)", ...style}}>{children}</div>
+  <div style={{background: CREME, borderRadius: 28, padding: "22px 30px 26px", textAlign: "center", textWrap: "balance", boxShadow: "0 10px 40px rgba(0,0,0,.28)", ...style}}>{children}</div>
 );
 const Row: React.FC<{top: number; style?: React.CSSProperties; children: React.ReactNode}> = ({top, style, children}) => (
-  <div style={{position: "absolute", left: 70, width: W - 140, top, display: "flex", justifyContent: "center", ...style}}>{children}</div>
+  <div style={{position: "absolute", left: 90, width: 740, top, display: "flex", justifyContent: "center", ...style}}>{children}</div>
 );
 
 // hook: words pop in one by one, "anhören" gets a hand-drawn underline
@@ -35,9 +35,9 @@ const Hook: React.FC<{f: number}> = ({f}) => {
   const box = interpolate(f, [0, 6], [0.92, 1], {...C, easing: out});
   const line = interpolate(f, [22, 34], [0, 1], {...C, easing: out});
   return (
-    <Row top={1330} style={{opacity: o, scale: String(box)}}>
+    <Row top={1215} style={{opacity: o, scale: String(box)}}>
       <Box>
-        <div style={{fontFamily: PF, fontWeight: 600, fontSize: 80, lineHeight: 1.12, color: INK}}>
+        <div style={{fontFamily: PF, fontWeight: 600, fontSize: 66, lineHeight: 1.12, color: INK}}>
           {words.map((w, k) => {
             const s = interpolate(f, [k * 2.5, k * 2.5 + 7], [0, 1], {...C, easing: pop});
             const acc = w === "anhören";
@@ -82,11 +82,13 @@ const Satz: React.FC<{f: number; n: number; text: string; from: number; kill: nu
       background: "linear-gradient(90deg, transparent, rgba(255,255,255,.95), transparent)", filter: "blur(4px)"}} />;
   }
   return (
-    <Row top={1390} style={style}>
+    <Row top={1265} style={style}>
       <div style={{position: "relative"}}>
         <Box style={{clipPath: clip}}>
-          <div style={{fontFamily: LATO, fontWeight: 700, fontSize: 30, letterSpacing: 8, color: ROST}}>SATZ {n} / 3</div>
-          <div style={{position: "relative", fontFamily: PF, fontWeight: 600, fontSize: 60, lineHeight: 1.15, color: INK, marginTop: 8}}>„{text}“
+          <div style={{display: "flex", justifyContent: "center", gap: 12}}>{[1, 2, 3].map((i) => (
+            <div key={i} style={{width: 40, height: 40, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: LATO, fontWeight: 700, fontSize: 22,
+              background: i < n ? ROST : "transparent", color: i < n ? CREME : ROST, border: `3px solid ${i <= n ? ROST : "#DCCFBC"}`}}>{i < n ? "✓" : i}</div>))}</div>
+          <div style={{position: "relative", fontFamily: PF, fontWeight: 600, fontSize: 52, lineHeight: 1.15, color: INK, marginTop: 10}}>„{text}“
             {fx === "crumple" && strike > 0 && <div style={{position: "absolute", left: -6, top: "52%", height: 7, borderRadius: 4, background: ROST, width: `calc(${strike * 100}% + 12px)`, rotate: "-2deg"}} />}
           </div>
         </Box>
@@ -119,20 +121,6 @@ const Burst: React.FC<{f: number; at: number; x: number; y: number}> = ({f, at, 
   })}</svg>;
 };
 
-// three marks at the top: each turns into a check once the sentence is gone
-const Progress: React.FC<{f: number}> = ({f}) => {
-  const done = [L1 - 8, S2 + 110, S3 + 92];
-  const o = interpolate(f, [56, 66, E0 + 10, E0 + 20], [0, 1, 1, 0], C);
-  return <div style={{position: "absolute", top: 50, right: 40, display: "flex", gap: 14, opacity: o}}>
-    {done.map((d, i) => {
-      const p = interpolate(f, [d, d + 8], [0, 1], {...C, easing: pop});
-      return <div key={i} style={{width: 54, height: 54, borderRadius: 27, background: p > 0 ? ROST : "rgba(246,240,230,.85)", display: "flex", alignItems: "center", justifyContent: "center",
-        color: CREME, fontFamily: LATO, fontWeight: 700, fontSize: 30, scale: String(1 + 0.25 * Math.sin(p * Math.PI)), boxShadow: "0 4px 14px rgba(0,0,0,.25)"}}>
-        {p > 0 ? "✓" : <span style={{color: ROST}}>{i + 1}</span>}</div>;
-    })}
-  </div>;
-};
-
 export const DreiSaetze: React.FC = () => {
   const f = useCurrentFrame();
   const e = f - E0;
@@ -154,8 +142,6 @@ export const DreiSaetze: React.FC = () => {
         {e >= 0 && <Img src={staticFile("s3_last.jpg")} style={{...full, scale: String(1 + e * 0.0009)}} />}
       </AbsoluteFill>
       <AbsoluteFill style={{background: "radial-gradient(ellipse at 50% 30%, rgba(255,140,40,.35), transparent 60%)", mixBlendMode: "screen", opacity: fire}} />
-      <AbsoluteFill style={{background: "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.35))"}} />
-      {e >= 0 && <AbsoluteFill style={{background: "linear-gradient(transparent 40%, rgba(20,14,10,.6) 75%)", opacity: interpolate(e, [0, 12], [0, 1], C)}} />}
 
       <Hook f={f} />
       <Satz f={f} n={1} text="Dafür hast du doch keine Zeit." from={56} kill={L1 - 18} fx="crumple" />
@@ -163,33 +149,26 @@ export const DreiSaetze: React.FC = () => {
       <Satz f={f} n={2} text="Mit 38 fängt man nicht neu an." from={S2 + 2} kill={S2 + 68} fx="burn" />
       <Embers f={f} start={S2 + 66} />
       <Satz f={f} n={3} text="KI sieht bei dir eh fake aus." from={S3 + 2} kill={S3 + 62} fx="wipe" />
-      <Progress f={f} />
 
       {/* end card: lines rise in, "Geglaubt nicht mehr." gets underlined */}
       {e >= 0 && (() => {
         const a = interpolate(e, [4, 16], [0, 1], {...C, easing: out}), b = interpolate(e, [20, 32], [0, 1], {...C, easing: out});
-        const u = interpolate(e, [32, 46], [0, 1], {...C, easing: out}), c = interpolate(e, [52, 64], [0, 1], {...C, easing: pop});
+        const u = interpolate(e, [32, 46], [0, 1], {...C, easing: out});
         return <>
-          <Row top={1080} style={{opacity: a, translate: `0 ${(1 - a) * 30}px`}}>
+          <Row top={1250} style={{opacity: a, translate: `0 ${(1 - a) * 30}px`}}>
             <Box>
-              <div style={{fontFamily: PF, fontWeight: 600, fontSize: 64, lineHeight: 1.18, color: INK}}>Angehört hab ich sie.</div>
-              <div style={{position: "relative", display: "inline-block", fontFamily: PF, fontStyle: "italic", fontWeight: 600, fontSize: 64, lineHeight: 1.18, color: ROST, opacity: b, translate: `0 ${(1 - b) * 20}px`}}>Geglaubt nicht mehr.
+              <div style={{fontFamily: PF, fontWeight: 600, fontSize: 56, lineHeight: 1.18, color: INK}}>Angehört hab ich sie.</div>
+              <div style={{position: "relative", display: "inline-block", fontFamily: PF, fontStyle: "italic", fontWeight: 600, fontSize: 56, lineHeight: 1.18, color: ROST, opacity: b, translate: `0 ${(1 - b) * 20}px`}}>Geglaubt nicht mehr.
                 <svg width="100%" height="24" viewBox="0 0 100 24" preserveAspectRatio="none" style={{position: "absolute", left: 0, bottom: -12}}>
                   <path d="M2 14 C 25 4, 55 22, 98 8" stroke={ROST} strokeWidth={4} fill="none" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - u} /></svg>
               </div>
-            </Box>
-          </Row>
-          <Row top={1380} style={{opacity: c, scale: String(0.85 + 0.15 * c)}}>
-            <Box>
-              <div style={{fontFamily: PF, fontWeight: 600, fontSize: 52, lineHeight: 1.2, color: INK}}>Welchen Satz würdest du verbrennen? 🔥</div>
-              <div style={{fontFamily: LATO, fontWeight: 400, fontSize: 34, color: ROST, marginTop: 14}}>Alle Prompts: kommentiere <b>PROMPT</b></div>
             </Box>
           </Row>
         </>;
       })()}
 
       <AbsoluteFill style={{background: "white", opacity: flash}} />
-      <div style={{position: "absolute", left: 40, top: 60, padding: "6px 14px", borderRadius: 8, background: "rgba(0,0,0,.55)", color: "white", fontFamily: LATO, fontSize: 26}}>KI-generiert</div>
+      <div style={{position: "absolute", left: 60, top: 1830, color: "white", fontFamily: LATO, fontWeight: 700, fontSize: 24, letterSpacing: 3, textShadow: "0 1px 4px rgba(0,0,0,.6)"}}>KI-GENERIERT</div>
     </AbsoluteFill>
   );
 };
